@@ -1,0 +1,83 @@
+/*
+Theme Name: Polaroid
+Theme URI: NA
+Description: Polaroid QuickSnaps theme
+Version: 1.0
+Author: Eoin McGrath
+Author URI: http://www.starfishwebconsulting.co.uk
+License: 
+	The CSS, XHTML is released under GPL:
+	http://www.opensource.org/licenses/gpl-license.php
+
+
+*/
+
+
+/* ------------------------------------------------------------------ GLOBAL ---*/
+
+body  { margin: 0; padding: 0; font: 76%  "Trebuchet MS", Helvetica, Sans-serif; line-height: 1.5em; color: #fff; text-align: center; 	background: #333 url('i/wood.jpg') top left; }
+
+a { color: #69a; text-decoration:none; font-weight: bold;}
+a:hover{text-decoration:underline; }
+
+/* ------------------------------------------------------------------ MAST ---*/
+#mast { display: block; margin: 0 0 20px 0; padding 10px 0; color: #fff; height: 100px;  }
+
+
+#mast h1 { margin: 0 0 0 30px; padding: 30px 0 0 30px; text-align: left; font: normal 30px "Century Gothic","Trebuchet MS",Arial,Helvetica,sans-serif; }
+#mast h1 a { color: #fff; font-weight: normal; text-decoration: none; }
+#mast h1 a:hover { color: #C7EE07; }
+
+
+/* ------------------------------------------------------------------ WRAPPER & SUB HEADINGS ---*/
+#wrap { display: block; margin: 0 auto; width: 800px; min-height: 500px; }
+
+#wrap h2 { display: block; text-align: left; color: #fff; font: normal 26px/28px "Century Gothic","Trebuchet MS",Arial,Helvetica,sans-serif; margin-bottom: 10px; }
+#wrap h2 small {  font-size: 70%; }
+
+#intro { text-align: left; margin-bottom: 20px; font-size: 120%; }
+
+/* ------------------------------------------------------------------ ALBUMS ---*/
+
+#slideshow { float: right; padding: 0 0 0 20px background: url(i/slideshow.png) 0 50% no-repeat; }
+
+.album { display: block; float: left; width: 100%; text-align: left; margin: 0 0 25px 0; background: #fff; position: relative; }
+.album a.view { position: absolute; bottom: 5px; right: 5px; background: #aaa; color: #232323; padding: 3px 5px;; webkit-border-radius: 2px; -moz-border-radius: 2px; }
+.album a.view:hover { background: #C7EE07; text-decoration: none; }
+.album img { float: left; margin: 3px 10px 5px 3px; }
+.album h3 { margin-top: 0; color: #000; font-size: 130%; }
+.album.active { background: #fff; cursor: pointer;  }
+.album.active h3 { color: #81990A;  }
+.album.active a.view { background: #C7EE07;  }
+
+
+/* ------------------------------------------------------------------ PHOTOS ---*/
+
+
+.photo { display: block; float: left; padding: 5px; background: #fff; margin: 0 10px 10px 0; -webkit-border-radius: 2px; -moz-border-radius: 2px;   }
+.frame { display: block; width: 120px; height: 90px; overflow: hidden; }
+.frame img { border: 0; }
+
+.caption { display: block; float: left; width: 120px; margin: 5px 0 0 0; color: #111; text-align: left; color: #333; }
+
+
+
+/* ------------------------------------------------------------------ PAGINATION ---*/
+
+.pagination {width:800px; text-align:center; float:left; margin: 10px 0 20px 0; line-height: 200%; }
+.pagination b {color:#600; background: #ffffb4; font-weight: bold; padding: 4px; margin: 0 0 0 5px; border: 1px solid #e3e269; border-bottom: 1px solid #e3e269 !important; position: relative; -webkit-border-radius: 3px; -moz-border-radius: 3px; }
+.pagination a {color:#aaa; border: solid 1px #555; padding: 4px;  margin: 0 0 5px 0; position: relative; -webkit-border-radius: 3px; -moz-border-radius: 3px; }
+.pagination a:hover{color:#000; background: #eee; font-weight: bold;  border: solid 1px #777}
+.pagination br { display: block; margin-bottom: 10px; }
+
+
+/* ------------------------------------------------------------------ MISC ---*/
+
+#footer { display: block; float: left; margin: 20px 0; width: 100%; font-size: 90%; color: #777; }
+#footer a { color: #888; }
+
+
+/* ------------------------------------------------------------------ LOGIN ---*/
+#extraDiv1 { position: absolute; top: 10px; right: 15px;  }
+#extraDiv1 a#login_link { padding: 1px 0 1px 20px; background: url(i/login.png) 0 50% no-repeat; color: #777; }
+#extraDiv1 a#login_link:hover { text-decoration: none; color: #ccc; } 
