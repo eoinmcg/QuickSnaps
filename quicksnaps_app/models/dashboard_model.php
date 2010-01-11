@@ -165,6 +165,7 @@ class Dashboard_model extends Model {
 			$this->db->update('albums', $data);
 		}
 
+		return $data['id'];
 
 	}
 
@@ -557,6 +558,49 @@ class Dashboard_model extends Model {
 		$this->_create_thumb('.'.$p->photo.$p->photo_type);
 
 		$this->image_lib->clear();
+
+	}
+
+
+	function set_key($key)
+	{
+
+		$data['uploadify_key'] = $key;
+
+		$this->db->where('id', 1);
+		$this->db->update('settings', $data);
+
+	}
+
+
+	function get_key()
+	{
+
+        $this->db->select('uploadify_key');
+        $this->db->where('id', 1);
+		$query = $this->db->get('settings');
+
+		$row = $query->row();
+
+		return $row->uploadify_key;
+
+
+	}
+
+
+	function check_key($key)
+	{
+
+		$db_key = $this->get_key();
+
+		if($key == $db_key)
+		{
+			return TRUE;
+		}
+		else
+		{
+			return FALSE;
+		}
 
 	}
 

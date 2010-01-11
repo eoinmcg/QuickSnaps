@@ -41,8 +41,8 @@ a:hover{text-decoration:underline; }
 
 #slideshow { float: right; padding: 0 0 0 20px background: url(i/slideshow.png) 0 50% no-repeat; }
 
-.album { display: block; float: left; width: 100%; text-align: left; margin: 0 0 25px 0; background: #fff; position: relative; }
-.album a.view { position: absolute; bottom: 5px; right: 5px; background: #aaa; color: #232323; padding: 3px 5px;; webkit-border-radius: 2px; -moz-border-radius: 2px; }
+.album { display: block; float: left; width: 100%; text-align: left; margin: 0 0 25px 0; background: #fff; position: relative; webkit-border-radius: 2px; -moz-border-radius: 2px; }
+.album a.view { position: absolute; bottom: 5px; right: 5px; background: #efefef; color: #232323; padding: 3px 5px; webkit-border-radius: 3px; -moz-border-radius: 3px; border-bottom: 1px solid #ccc; border-right: 1px solid #ccc;  }
 .album a.view:hover { background: #C7EE07; text-decoration: none; }
 .album img { float: left; margin: 3px 10px 5px 3px; }
 .album h3 { margin-top: 0; color: #000; font-size: 130%; }
@@ -54,7 +54,7 @@ a:hover{text-decoration:underline; }
 /* ------------------------------------------------------------------ PHOTOS ---*/
 
 
-.photo { display: block; float: left; padding: 5px; background: #fff; margin: 0 10px 10px 0; -webkit-border-radius: 2px; -moz-border-radius: 2px;   }
+.photo { display: block; float: left; padding: 5px; background: #fff; margin: 0 10px 10px 0; /*-webkit-border-radius: 2px; -moz-border-radius: 2px; */  }
 .frame { display: block; width: 120px; height: 90px; overflow: hidden; }
 .frame img { border: 0; }
 
@@ -78,6 +78,11 @@ a:hover{text-decoration:underline; }
 
 
 /* ------------------------------------------------------------------ LOGIN ---*/
-#extraDiv1 { position: absolute; top: 10px; right: 15px;  }
-#extraDiv1 a#login_link { padding: 1px 0 1px 20px; background: url(i/login.png) 0 50% no-repeat; color: #777; }
-#extraDiv1 a#login_link:hover { text-decoration: none; color: #ccc; } 
+#extraDiv1 { position: absolute; top: 3px; right: 3px; display: block; width: 150px;  }
+#extraDiv1 a#login_link { float: right; padding: 10px; width: 160px; background: url(i/login.png) 90% 50% no-repeat; text-indent: -9999em; }
+#extraDiv1 form { display: none; float: left; width: 120px; padding: 20px 5px 5px 5px; background: #333; -moz-border-radius: 5px; -khtml-border-radius: 5px; -webkit-border-radius: 5px; border-radius: 5px; }
+#extraDiv1 form input[type="text"],
+#extraDiv1 form input[type="password"]  { display: block; float: left; width: 110px; border: 1px solid #111; margin: 0 0 10px 0; padding: 0; padding: 2px; font-size: 90%; color: #555; }
+
+
+

@@ -3,14 +3,13 @@
 <script type="text/javascript" src="<?php echo base_url();?>assets/admin/js/jquery.uploadify.v2.1.0.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url();?>assets/admin/js/swfobject.js"></script>
 
-
 <script type="text/javascript">
 	$(document).ready(function(){
 
 									
 				$("#upload").uploadify({
 						uploader: '<?php echo base_url();?>assets/admin/flash/uploadify.swf',
-						script: '<?php echo site_url();?>/admin/photos/upload_batch',
+						script: '<?php echo site_url();?>/admin/photos/upload_batch/<?php echo $key; ?>',
 						cancelImg: '<?php echo base_url();?>assets/admin/i/cancel.png',
 						folder: '<?php echo $album_id; ?>',
 						fileDataName: 'photo',
@@ -28,7 +27,7 @@
 								alert('error '+d.type+": "+d.text);
 							},
 						'onComplete'   : function (event, queueID, fileObj, response, data) {
-											$.post('<?php echo site_url()."/admin/photos/upload_batch";?>',{filearray: response},function(info){
+											$.post('<?php echo site_url()."/admin/photos/upload_batch/$key";?>',{filearray: response},function(info){
 												$("#target").append(info);	  
 											});								 			
 						},	

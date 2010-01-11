@@ -2,9 +2,9 @@
 <?php echo anchor('admin/albums', 'Back', array('class' => 'back')); ?>
 
 <div class="controls">
-<?php echo anchor('admin/albums/edit/'.$album_id, 'Edit Album Info', array('class' => 'control', 'id' => 'album_edit')); ?>
 <?php echo anchor('admin/photos/new_photo/album-'.$album_id, 'New Photo', array('class' => 'control', 'id' => 'photo_single')); ?>
 <?php echo anchor('admin/photos/uploadify/'.$album_id, 'Upload multiple photos', array('class' => 'control', 'id' => 'photo_multi')); ?>
+<?php echo anchor('admin/albums/edit/'.$album_id, 'Edit Album Info', array('class' => 'control', 'id' => 'album_edit')); ?>
 </div>
 
 <noscript>

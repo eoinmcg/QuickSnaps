@@ -5,6 +5,43 @@ $(document).ready(function(){
 	$('.album').pinball();
 
 
+//  Insert a login form into the DOM using jQuery
+    var loginForm = jQuery(document.createElement('form'));
+    loginForm.attr('id', 'login_form');
+    loginForm.attr('method', 'post');
+    loginForm.attr('action', $('a#login_link').attr('href'));
+    $('#extraDiv1').append(loginForm);
+
+    var inputUser = jQuery(document.createElement('input'));
+    inputUser.attr('type', 'text');
+    inputUser.attr('name', 'uname');
+    inputUser.attr('id', 'uname');
+    $('#login_form').append(inputUser);
+
+    var inputPass = jQuery(document.createElement('input'));
+    inputPass.attr('type', 'password');
+    inputPass.attr('name', 'pword');
+    inputPass.attr('id', 'pword');
+    $('#login_form').append(inputPass);
+
+    var inputLogin = jQuery(document.createElement('input'));
+    inputLogin.attr('type', 'hidden');
+    inputLogin.attr('name', 'login');
+    inputLogin.attr('id', 'login');
+    inputLogin.attr('value', 'true');
+    $('#login_form').append(inputLogin);
+
+    var inputSubmit = jQuery(document.createElement('input'));
+    inputSubmit.attr('type', 'submit');
+    inputSubmit.attr('value', 'Login');
+    $('#login_form').append(inputSubmit);
+
+    $('a#login_link').click(function () {
+        $('#login_form').toggle('slow');
+        return false;
+    });
+
+
 });
 
 

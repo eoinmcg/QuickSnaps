@@ -62,8 +62,9 @@ class Installer_Model extends Model
 									'mid_h'   	    => array('type' => 'INT', 'constraint' => 4),
 									'thumb_w'  	    => array('type' => 'INT', 'constraint' => 4),
 									'thumb_h'  	    => array('type' => 'INT', 'constraint' => 4),
-									'lib'	    => array('type' => 'VARCHAR', 'constraint' => 12),
-									'lib_path'	=> array('type' => 'VARCHAR', 'constraint' => 32)
+									'lib'	    	=> array('type' => 'VARCHAR', 'constraint' => 12),
+									'lib_path'		=> array('type' => 'VARCHAR', 'constraint' => 32),
+									'uploadify_key' => array('type' => 'VARCHAR', 'constraint' => 32)
 									);
 		$this->dbforge->add_field($settings);
 		$this->dbforge->add_key('id', TRUE);

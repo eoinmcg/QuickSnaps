@@ -19,6 +19,7 @@
 </div>
 
 
+
 	<div id="content">
 
 		<h2>Login</h2>
@@ -40,11 +41,12 @@
 				<input type="submit" name="login" value="Login" />
 			</div>
 
-			<?php echo $msg; ?>
-
 		</form>
 
 	</div>
+
+
+		<?php echo $msg; ?>
 
 
 </body>

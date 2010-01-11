@@ -269,8 +269,11 @@ class Photos extends MY_Controller
 		$data['title']	=	'Upload multiple photos to '.$data['album'];
 		$data['h1']		= 	'Upload multiple photos to  '.$data['album'];
 		$data['query']	=	$this->Dashboard_model->photos_get($data['album_id']);
+		$data['key']	= 	$code = md5(uniqid(rand(), true));	// we'll save this in the db and compare it on upload for security
 		$data['js']		= 	'admin/uploadify_js.php';
 		$data['main'][]	= 	'admin/photos_uploadify.php';
+
+		$this->Dashboard_model->set_key($data['key']);
 
 		$this->load->view('admin/dashboard', $data);
 		
@@ -278,16 +281,16 @@ class Photos extends MY_Controller
 
 
 
-	function upload_batch()
+	function upload_batch($key=FALSE)
 	{
 
-		//some ad hoc security:
-		if($_SERVER['REMOTE_ADDR'] != $_SERVER['SERVER_ADDR'])
-		{
-			return FALSE;
-		}
+		$valid_key = $this->Dashboard_model->check_key($key);
 
-       if (!empty($_FILES))
+		if(!$valid_key)
+		{
+			echo 'Invalid Key';
+		}
+       elseif(!empty($_FILES))
         {
 
 			// this isn't perfect but uploadify adds a lot of cack to $_POST['folder']
