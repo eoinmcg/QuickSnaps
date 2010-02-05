@@ -118,19 +118,31 @@ class Themes extends MY_Controller
 		preg_match( '|Description:(.*)$|mi', $theme_data, $description );
 
 		if ( preg_match( '|Author URI:(.*)$|mi', $theme_data, $author_uri ) )
+		{
 			$author_uri = trim( $author_uri[1]);
+		}
 		else
+		{
 			$author_uri = '';
+		}
 
 		if ( preg_match( '|Template:(.*)$|mi', $theme_data, $template ) )
+		{
 			$template = trim( $template[1] );
+		}
 		else
+		{
 			$template = '';
+		}
 
 		if ( preg_match( '|Version:(.*)|i', $theme_data, $version ) )
+		{
 			$version = trim( $version[1] );
+		}
 		else
+		{
 			$version = '';
+		}
 
 
 		if(file_exists(THEME_DIR.$folder_name.'/screenshot.jpg'))
@@ -154,7 +166,6 @@ class Themes extends MY_Controller
 		{
 			$author = 'Anonymous';
 		}
-
 
 		return array( 
 				'name' => $name, 
