@@ -21,18 +21,18 @@ a { color: #69a; text-decoration:none; font-weight: bold;}
 a:hover{text-decoration:underline; }
 
 /* ------------------------------------------------------------------ MAST ---*/
-#mast { display: block; margin: 0 0 20px 0; padding 10px 0; color: #fff; height: 100px;  }
+#mast { display: block; margin: 0 0 10px 0; padding 10px 0; color: #fff; height: 100px;  }
 
 
-#mast h1 { margin: 0 0 0 30px; padding: 30px 0 0 30px; text-align: left; font: normal 30px "Century Gothic","Trebuchet MS",Arial,Helvetica,sans-serif; }
+#mast h1 { margin: 0; padding: 20px 0 0 0; text-align: center; font: normal 30px "Century Gothic","Trebuchet MS",Arial,Helvetica,sans-serif; }
 #mast h1 a { color: #fff; font-weight: normal; text-decoration: none; }
 #mast h1 a:hover { color: #C7EE07; }
 
 
 /* ------------------------------------------------------------------ WRAPPER & SUB HEADINGS ---*/
-#wrap { display: block; margin: 0 auto; width: 800px; min-height: 500px; }
+#wrap { display: block; margin: 0 auto; width: 740px; padding: 0 0 0 30px; min-height: 500px; text-align: left; }
 
-#wrap h2 { display: block; text-align: left; color: #fff; font: normal 26px/28px "Century Gothic","Trebuchet MS",Arial,Helvetica,sans-serif; margin-bottom: 10px; }
+#wrap h2 { display: block; text-align: left; color: #fff; font: normal 26px/28px "Century Gothic","Trebuchet MS",Arial,Helvetica,sans-serif; margin: 10px 0; }
 #wrap h2 small {  font-size: 70%; }
 
 #intro { text-align: left; margin-bottom: 20px; font-size: 120%; }
@@ -54,7 +54,7 @@ a:hover{text-decoration:underline; }
 /* ------------------------------------------------------------------ PHOTOS ---*/
 
 
-.photo { display: block; float: left; padding: 5px; background: #fff; margin: 0 10px 10px 0; /*-webkit-border-radius: 2px; -moz-border-radius: 2px; */  }
+.photo { display: block; float: left; padding: 5px; background: #fff; margin: 0 15px 20px 0; /*-webkit-border-radius: 2px; -moz-border-radius: 2px; */  }
 .frame { display: block; width: 120px; height: 90px; overflow: hidden; }
 .frame img { border: 0; }
 

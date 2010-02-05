@@ -133,13 +133,13 @@ class Themes extends MY_Controller
 			$version = '';
 
 
-		if(file_exists(THEME_DIR.$folder_name.'/screenshot.png'))
+		if(file_exists(THEME_DIR.$folder_name.'/screenshot.jpg'))
 		{
-			$preview = './themes/'.$folder_name.'/screenshot.png';
+			$preview = './themes/'.$folder_name.'/screenshot.jpg';
 		}
 		else
 		{
-			$preview = './assets/admin/i/nopreview.png';
+			$preview = './assets/admin/i/nopreview.jpg';
 		}
 
 		$name = $theme = trim($theme_name[1] );

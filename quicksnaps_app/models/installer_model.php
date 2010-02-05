@@ -126,7 +126,7 @@ class Installer_Model extends Model
 
 		$this->db->set('id', 1);
 		$this->db->set('name', 'QuickSnaps Gallery');
-		$this->db->set('default_theme', 'default');
+		$this->db->set('default_theme', 'polaroid');
 		$this->db->set('per_page', 10);
 		$this->db->set('mid_w', 700);
 		$this->db->set('mid_h', 400);

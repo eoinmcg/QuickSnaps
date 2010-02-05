@@ -9,60 +9,10 @@
 <meta http-equiv="Pragma" content="no-cache" />
 
 <link type="text/css" rel='stylesheet' href="<?php echo base_url(); ?>assets/admin/css/admin.css" media="screen, projection" />
-
-<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery-1.3.2.min.js"></script>
-<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery-ui-1.7.2.custom.min.js"></script>
-<script type="text/javascript" src="<?php echo base_url(); ?>assets/admin/js/jquery.Jcrop.min.js"></script>
-<script type="text/javascript" src="<?php echo base_url(); ?>assets/admin/js/jquery.jgrowl.js"></script>
-<script type="text/javascript" src="<?php echo base_url(); ?>assets/admin/js/ajax.js"></script>
-<script type="text/javascript" src="<?php echo base_url(); ?>assets/admin/js/admin.js"></script>
-
-<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/slimbox2.js"></script>
 <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/slimbox2.css" media="screen" />
 
 <link rel="shortcut icon" href="<?php echo base_url(); ?>favicon.ico" type="image/x-icon" />
 <link rel="icon" href="<?php echo base_url(); ?>favicon.ico" type="image/x-icon" />
-
-
-    <script type="text/javascript">
-
-        var QUICKSNAPS = {};
-
-        <?php
-            if($this->session->flashdata('jgrowl'))
-            {
-                echo "QUICKSNAPS.growl = '".$this->session->flashdata('jgrowl')."'; ";
-            }
-
-            if(isset($album_id))
-            {
-                echo 'QUICKSNAPS.reorder = "'.site_url().'/admin/photos/save_order/'.$album_id.'";';
-            }
-
-            if(isset($albums_reorder))
-            {
-                echo 'QUICKSNAPS.reorder = "'.site_url().'/admin/albums/save_order/";';
-            }
-
-        ?>
-    
-    </script>
-
-
-
-<?php
-			if(isset($js) && is_array($js))
-			{
-				foreach($js as $view)
-				{
-					$this->load->view($js);
-				}
-			}
-			elseif(!empty($js))
-			{
-				$this->load->view($js);
-			}
-?>
 
 </head>
 
@@ -156,7 +106,7 @@
     <p>
     <a href="http://starfishwebconsulting.co.uk/articles/quicksnaps">Quicksnaps - simple photo management</a> |
     Brought to you by <a href="http://starfishwebconsulting.co.uk">Starfish Web Consulting.</a> <br />
-    &copy; 2009 | Licensed under the <a href="http://creativecommons.org/licenses/GPL/2.0/">GNU GPL</a> license
+    &copy; <?php echo date('Y', time()); ?> | Licensed under the <a href="http://creativecommons.org/licenses/GPL/2.0/">GNU GPL</a> license
     </p>
 
 	<p class="benchmark">
@@ -166,9 +116,52 @@
 
 </div>
 
+<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery-1.3.2.min.js"></script>
+<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery-ui-1.7.2.custom.min.js"></script>
+<script type="text/javascript" src="<?php echo base_url(); ?>assets/admin/js/jquery.Jcrop.min.js"></script>
+<script type="text/javascript" src="<?php echo base_url(); ?>assets/admin/js/jquery.jgrowl.js"></script>
+<script type="text/javascript" src="<?php echo base_url(); ?>assets/admin/js/ajax.js"></script>
+<script type="text/javascript" src="<?php echo base_url(); ?>assets/admin/js/admin.js"></script>
+<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/slimbox2.js"></script>
+
+<script type="text/javascript">
+
+    var QUICKSNAPS = {};
+
+    <?php
+        if($this->session->flashdata('jgrowl'))
+        {
+            echo "QUICKSNAPS.growl = '".$this->session->flashdata('jgrowl')."'; ";
+        }
+
+        if(isset($album_id))
+        {
+            echo 'QUICKSNAPS.reorder = "'.site_url().'/admin/photos/save_order/'.$album_id.'";';
+        }
+
+        if(isset($albums_reorder))
+        {
+            echo 'QUICKSNAPS.reorder = "'.site_url().'/admin/albums/save_order/";';
+        }
+
+    ?>
+
+</script>
+
+<?php
+		if(isset($js) && is_array($js))
+		{
+			foreach($js as $view)
+			{
+				$this->load->view($js);
+			}
+		}
+		elseif(!empty($js))
+		{
+			$this->load->view($js);
+		}
+?>
+
 </body>
-
-
-
 
 </html>

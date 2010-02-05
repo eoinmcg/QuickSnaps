@@ -142,15 +142,16 @@ class Dashboard_model extends Model {
 	{
 
 
-      if(empty($data['name']))
-      {
-            $data['name'] = 'Gallery '.$data['id'];
-      }
-
 		if(!$data['id']) 
 		{
 			$this->db->insert('albums', $data);	
             $id = $this->db->insert_id();
+
+		      if(empty($data['name']))
+		      {
+		            $data['name'] = 'Gallery '.$id;
+		      }
+
 
             $data['id']= $id;
             $data['url'] = url_title($data['name']);
@@ -161,6 +162,11 @@ class Dashboard_model extends Model {
 		}
 		else
 		{
+		      if(empty($data['name']))
+		      {
+		            $data['name'] = 'Gallery '.$data['id'];
+		      }
+
 		 	$this->db->where('id', $data['id']);
 			$this->db->update('albums', $data);
 		}

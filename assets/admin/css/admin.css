@@ -3,7 +3,7 @@
 @import "jquery.Jcrop.css";
 
 
-body  { margin: 0; padding: 0; color: #000;  text-align: center; background: #fff; font: 76%/1.5 "Lucida Grande", "Lucida Sans Unicode", Arial, Helvetica, sans-serif; }
+body  { margin: 0; padding: 0; color: #000;  text-align: center; background: #fff; font: 62%/1.5 "Lucida Grande", "Lucida Sans Unicode", Arial, Helvetica, sans-serif; }
 
 b, strong { font-weight: bold; }
 em {font-style: italic; } 
@@ -17,7 +17,7 @@ a img { border: 0; }
 
 
 /*--------------- STRUCTURE ---------------*/
-#wrap { margin: 0 auto; width: 800px; }
+#wrap { margin: 0 auto; width: 800px; font-size: 1.4em; }
 
 #main { margin: 50px 0 0 0; display: block; float: left; width: 800px; position: relative ; text-align: left; }
 #footer { display: block; float: left; width: 100%; margin: 50px 0 0 0; padding: 20px 0; color: #999; text-align: center; }
@@ -32,7 +32,7 @@ h3 { font: bold 15px "Century Gothic","Trebuchet MS",Arial,Helvetica,sans-serif;
 
 
 /*--------------- HEADER ---------------*/
-#header {  display: block; float: left; width: 100%; float: left; width: 100%; background: #444; }
+#header {  display: block; float: left; width: 100%; float: left; width: 100%; background: #444; font-size: 1.3em; }
 
 #header h1 a { text-indent: -999999em;  display: block; float: left; width: 300px; height: 55px; background: url(../i/logo.png) 0 0 no-repeat; margin: 10px 0 0 50px; }
 #header h1 small {font-size: 80%; }
@@ -40,7 +40,7 @@ h3 { font: bold 15px "Century Gothic","Trebuchet MS",Arial,Helvetica,sans-serif;
 body#login h1, body#installer h1 { color: #fff; font-weight: normal;  }
 body#login #header, body#installer #header { border-bottom: 1px solid #000; }
 
-#toolbar { list-style: none; background: #2E3436; text-align: right; padding: 0 1ex; margin: 0; border-bottom: 1px solid #000; }
+#toolbar { list-style: none; background: #2E3436; text-align: right; padding: 0 1ex; margin: 0; border-bottom: 1px solid #000; font-size: 1.3em; }
 #toolbar li { display: inline; padding-top: 10px; padding-bottom: 8px; margin-left: 0px; margin-top: 0px; }
 #toolbar li a { font-weight: normal; color: #FFFFFF; margin: 0 2ex; text-decoration: none; line-height: 30px; }
 #toolbar li a:hover, #toolbar li a:focus { text-decoration: underline; }
@@ -88,7 +88,7 @@ a.options { padding: 2px 2px 2px 18px; background: url(../i/options.png) 0 50% n
 a.upload { display: block; float: left; padding: 20px 20px 20px 60px; border: 1px solid #e3e269; background: #ffffb4 url(../i/upload.png) 0 50% no-repeat;  margin-bottom: 5px; }
 
 #controls { display: block; float: left; clear: both;  }
-a.control { display: block; float: left; padding: 5px 5px 30px 5px; width: 230px; margin: 20px 20px 20px 0; text-indent: 54px; line-height: 300%; border: 1px solid #D5E0E4; font-size: 120%; -moz-border-radius: 3px; -khtml-border-radius: 3px; -webkit-border-radius: 3px; border-radius: 3px; }
+a.control { display: block; float: left; padding: 5px 5px 30px 5px; width: 230px; margin: 20px 20px 20px 0; text-indent: 54px; line-height: 300%; border: 1px solid #D5E0E4; font-size: 110%; -moz-border-radius: 3px; -khtml-border-radius: 3px; -webkit-border-radius: 3px; border-radius: 3px; }
 a#album_edit { background: #EFF6F8 url(../i/album_edit.png) 3px 10px no-repeat !important;  }
 a#album_edit:hover { background: #369 url(../i/album_edit.png) 3px 10px no-repeat !important; color: #fff; }
 a#photo_single { background: #EFF6F8 url(../i/upload_photo.png) 3px 3px no-repeat !important; }
@@ -130,7 +130,7 @@ form * { margin: 0 20px 0 0; }
 /*--------------- TABLES ---------------*/
 table { width: 100%; margin: 10px auto 40px auto; border: 1px solid #ccc; background: #fff; text-align: left; }
 table tr.alt { background: #F9F9F9; }
-th { text-align: left; margin: 0 0 .5em 0; font-size: 120%; background: #369; color: #fff; text-align: center; border-bottom: 1px solid #036; padding: 5px; font-weight: bold; }
+th { text-align: left; margin: 0 0 .5em 0; font-size: 120%; background: #369; color: #fff; border-bottom: 1px solid #036; padding: 5px; font-weight: bold; }
 tr.ruled { background: #ffffb1 !important; }
 tr.pre_delete { background: #fb6c6c !important; }
 td { border-bottom: 1px solid #eee; }
@@ -139,7 +139,7 @@ td img { float: left;  }
 
 
 /*--------------- REORDER ---------------*/
-ul#reOrder li { width: 160px; padding: 5px 0; float: left; display: block; background-color: #efefef; border: 1px solid #ddd; margin: 5px 35px 5px 0; position: relative; -moz-border-radius: 3px; -khtml-border-radius: 3px; -webkit-border-radius: 3px; border-radius: 3px; }
+ul#reOrder li { width: 160px; font-size: 0.8em; padding: 5px 0; float: left; display: block; background-color: #efefef; border: 1px solid #ddd; margin: 5px 35px 5px 0; position: relative; -moz-border-radius: 3px; -khtml-border-radius: 3px; -webkit-border-radius: 3px; border-radius: 3px; }
 ul#reOrder li.draggable { background-image: url(../i/grip.png); background-repeat: no-repeat; background-position: right top; }
 ul#reOrder li.pre_delete { border: 1px solid #D893A1 !important;  background-color: #FBE6F2  !important; }
 ul#reOrder li .img_wrap { display: block; float: left; height: 100px; min-width: 100px; overflow: hidden; }

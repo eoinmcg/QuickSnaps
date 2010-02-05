@@ -1,8 +1,15 @@
 <div id="wrap">
 
+<?php
+	if($referer):
+?>
+	<a id="back" href="<?php echo $referer; ?>">&laquo; Back</a>
+<?php
+	endif;
+?>
+
+
 <h2><?php echo $album; ?> <small><?php echo $num_photos; ?> photos</small></h2>
-
-
 
 <div id="intro">
 	<p><?php echo parse_smileys(nl2br($full_txt), base_url().'/assets/i/smileys/'); ?></p>

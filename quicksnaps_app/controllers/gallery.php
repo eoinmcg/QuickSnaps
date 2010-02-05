@@ -61,12 +61,16 @@ class Gallery extends MY_Controller {
 	{
 
 		if(!$album_url)
+		{
 			show_404();
+		}
 
 		$album = $this->Gallery_model->get_album_title($album_url);
 
 		if(!$album)
+		{
 			show_404();
+		}
 
 		$data['title']				= 'Album: '.$album['name'];
 		$data['heading']			= $album['name'];
@@ -76,11 +80,16 @@ class Gallery extends MY_Controller {
 		$data['js']					= $this->Gallery_model->get_theme_js($data['theme']);
 		$data['favicon']	        = $this->Gallery_model->get_theme_favicon($data['theme']);
 		$data['num_photos']			= $this->Gallery_model->count_photos($album['id']);
-		$data['full_txt']			= parse_smileys(nl2br($album['full_txt']), "/assets/i/smileys");
+		$data['full_txt']			= parse_smileys(nl2br($album['full_txt']), $this->config->item('base_url')."/assets/i/smileys");
 		$data['query'] 				= $this->Gallery_model->get_photos($album['id']);
-        $data['main']               = 'gallery/album';
+		$data['main']               = 'gallery/album';
 
-		    $this->load->view('gallery/gallery', $data);
+		$data['referer'] = (isset($_SERVER['HTTP_REFERER']))
+			? $_SERVER['HTTP_REFERER']
+			: FALSE;
+
+
+		$this->load->view('gallery/gallery', $data);
 
 
 	}
@@ -88,6 +97,7 @@ class Gallery extends MY_Controller {
 
 	function admin()
 	{
+
 		redirect(base_url().'admin/login/', 'refresh');
 		exit;
 	}
