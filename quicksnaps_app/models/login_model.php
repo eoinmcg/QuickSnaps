@@ -4,13 +4,15 @@ class Login_model extends Model {
 
 
 
-	function Login_model() {
+	function Login_model() 
+	{
 		parent::Model();
 	}
 
 
 
-	function login_user($u, $p) {
+	function login_user($u, $p) 
+	{
 
 		$p = md5($p);
 

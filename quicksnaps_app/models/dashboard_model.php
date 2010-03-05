@@ -1,8 +1,24 @@
 <?php
 
+/** 
+* Dashboard Model 
+* These methods only to be accessed via logged in user
+* 
+* @package		QuickSnaps
+* @author		Eoin McGrath
+* @link			http://www.starfishwebconsulting.co.uk/quicksnaps
+*/ 
+
 class Dashboard_model extends Model {
 
 
+	/** 
+	* PHP4 Style contructor 
+	* [if(date('Y', time()) > 2006)) echo 'Flux Capacitor broken again??'] 
+	* 
+	* @access public
+	* @return void 
+	*/ 
 	function Dashboard_model() 
 	{
 		parent::Model();
@@ -10,6 +26,13 @@ class Dashboard_model extends Model {
 
 	}
 
+
+	/** 
+	* A brief synopsis of albums & photos
+	* 
+	* @access public 
+	* @return array 
+	*/ 
 	function get_overview()
 	{
 
@@ -18,13 +41,23 @@ class Dashboard_model extends Model {
         $photos = $this->db->count_all_results('photos');
 
 		$max_upload = GALLERY_MAX_UPLOAD / 1024;
-		return array('albums' => $albums, 'photos' => $photos, 'max_upload' => $max_upload.' MB');
+		return array
+				(
+					'albums' => $albums, 
+					'photos' => $photos, 
+					'max_upload' => $max_upload.' MB'
+				);
 
 	}
 
 
 
-
+	/** 
+	* Find all themes in the themes directory
+	* 
+	* @access public 
+	* @return array 
+	*/ 
 	function get_themes()
 	{
 
@@ -37,6 +70,12 @@ class Dashboard_model extends Model {
 	}
 
 
+	/** 
+	* Get DB record for default theme
+	* 
+	* @access public 
+	* @return object 
+	*/ 
 	function get_default_theme()
 	{
 
@@ -50,6 +89,13 @@ class Dashboard_model extends Model {
 	}
 
 
+	/** 
+	* Update settings record
+	* 
+	* @access public 
+	* @access array 
+	* @return void 
+	*/ 
 	function update_settings($data)
 	{
 
@@ -60,10 +106,18 @@ class Dashboard_model extends Model {
 
 
 
-#
-#	ALBUMS
-#
+/* -------------------------------------------------------------
+														ALBUMS
+ ------------------------------------------------------------- */
 
+	/** 
+	* Get all albums
+	* NOTE: gallery_model's method only selects non private
+	* and is paginagated
+	* 
+	* @access public 
+	* @return resource 
+	*/ 
     function get_albums()
     {
 
@@ -141,31 +195,42 @@ class Dashboard_model extends Model {
 	function update_album($data)
 	{
 
-
 		if(!$data['id']) 
 		{
 			$this->db->insert('albums', $data);	
             $id = $this->db->insert_id();
 
-		      if(empty($data['name']))
-		      {
-		            $data['name'] = 'Gallery '.$id;
-		      }
+			if(empty($data['name']))
+			{
+				$data['name'] = 'Gallery '.$id;
+				$data['url'] = 'gallery_'.$id;
+			}
 
+			if(strlen($data['url']) < strlen($data['name']))
+			{
+				$data['url']= 'gallery_'.$id;
+			}
 
             $data['id']= $id;
-            $data['url'] = url_title($data['name']);
             $data['rank'] = 10000 - $id;
+
         	$this->db->where('id', $data['id']);
     	    $this->db->update('albums', $data);
 
 		}
 		else
 		{
-		      if(empty($data['name']))
-		      {
-		            $data['name'] = 'Gallery '.$data['id'];
-		      }
+
+			if(empty($data['name']))
+			{
+				$data['name'] = 'Gallery '.$data['id'];
+				$data['url'] = 'gallery_'.$data['id'];
+			}
+
+			if(strlen($data['url']) < strlen($data['name']))
+			{
+				$data['url']= 'gallery_'.$id;
+			}
 
 		 	$this->db->where('id', $data['id']);
 			$this->db->update('albums', $data);
@@ -175,9 +240,9 @@ class Dashboard_model extends Model {
 
 	}
 
-#
-#	PHOTOS
-#
+/* -------------------------------------------------------------
+														PHOTOS
+ ------------------------------------------------------------- */
 	function photos_get($id) 
     {
 
@@ -346,7 +411,7 @@ class Dashboard_model extends Model {
 	function albums_delete($id = 0)
 	{
 
-#		GET INFO ABOUT THE ALBUM WE'RE ABOUT TO WIPE
+		// GET INFO ABOUT THE ALBUM WE'RE ABOUT TO WIPE
         $this->db->select('id');
         $this->db->where('id', $id);
         $query = $this->db->get('albums');
@@ -357,7 +422,7 @@ class Dashboard_model extends Model {
 
 		$query->free_result();
 
-#		DELETE ALL PHOTOS IN ALBUM
+		// DELETE ALL PHOTOS IN ALBUM
         $this->db->select('id');
         $this->db->where('album', $album);
         $query = $this->db->get('photos');
@@ -370,7 +435,7 @@ class Dashboard_model extends Model {
 		$query->free_result();
 
 
-#		NOW WIPE THE ALBUM
+		// NOW WIPE THE ALBUM
         $this->db->delete('albums', array('id' => $album)); 
 
 

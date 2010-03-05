@@ -87,6 +87,7 @@ class Albums extends MY_Controller
 			'full_txt'	=> $this->input->post('full_txt')
 		);
 
+
 		$submit_id = $this->Dashboard_model->update_album($data);
 
 
@@ -98,6 +99,7 @@ class Albums extends MY_Controller
 		{
 	        $this->session->set_flashdata('jgrowl', 'Album info updated');
 		}
+
 
 		redirect('admin/photos/show/'.$submit_id, 'refresh');
 		exit;

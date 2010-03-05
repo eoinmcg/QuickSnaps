@@ -24,8 +24,8 @@ a:hover{text-decoration:underline; }
 #mast { display: block; margin: 0 0 10px 0; padding 10px 0; color: #fff; height: 100px;  }
 
 
-#mast h1 { margin: 0; padding: 20px 0 0 0; text-align: center; font: normal 30px "Century Gothic","Trebuchet MS",Arial,Helvetica,sans-serif; }
-#mast h1 a { color: #fff; font-weight: normal; text-decoration: none; }
+#mast h1 { margin: 0; padding: 20px 0 0 0; text-align: center; font: normal 38px "Century Gothic","Trebuchet MS",Arial,Helvetica,sans-serif; }
+#mast h1 a { color: #fff; text-shadow: #666 1px 1px; font-weight: normal; text-decoration: none; }
 #mast h1 a:hover { color: #C7EE07; }
 
 
@@ -42,6 +42,7 @@ a:hover{text-decoration:underline; }
 #slideshow { float: right; padding: 0 0 0 20px background: url(i/slideshow.png) 0 50% no-repeat; }
 
 .album { display: block; float: left; width: 100%; text-align: left; margin: 0 0 25px 0; background: #fff; position: relative; webkit-border-radius: 2px; -moz-border-radius: 2px; }
+.album p { color: #333; }
 .album a.view { position: absolute; bottom: 5px; right: 5px; background: #efefef; color: #232323; padding: 3px 5px; webkit-border-radius: 3px; -moz-border-radius: 3px; border-bottom: 1px solid #ccc; border-right: 1px solid #ccc;  }
 .album a.view:hover { background: #C7EE07; text-decoration: none; }
 .album img { float: left; margin: 3px 10px 5px 3px; }
@@ -53,13 +54,18 @@ a:hover{text-decoration:underline; }
 
 /* ------------------------------------------------------------------ PHOTOS ---*/
 
+a#back { background: #ddd; color: #232323; padding: 3px 5px; webkit-border-radius: 3px; -moz-border-radius: 3px; border-bottom: 1px solid #ccc; border-right: 1px solid #ccc; opacity: 0.5; }
+a#back:hover { background: #C7EE07; text-decoration: none; border-bottom: 1px solid #89A404; border-right: 1px solid #89A404; opacity: 1.0; }
 
-.photo { display: block; float: left; padding: 5px; background: #fff; margin: 0 15px 20px 0; /*-webkit-border-radius: 2px; -moz-border-radius: 2px; */  }
+.photo { display: block; float: left; padding: 5px; background: #fff; margin: 0 15px 20px 0; -webkit-border-radius: 2px; -moz-border-radius: 2px;   }
 .frame { display: block; width: 120px; height: 90px; overflow: hidden; }
 .frame img { border: 0; }
 
 .caption { display: block; float: left; width: 120px; margin: 5px 0 0 0; color: #111; text-align: left; color: #333; }
 
+.photo:nth-child(even) { -webkit-transform: rotate(4deg);  -moz-transform: rotate(2deg); }
+.photo:nth-child(odd) { -webkit-transform: rotate(-5deg);  -moz-transform: rotate(-3deg); }
+.photo:nth-child(3n) { -webkit-transform: rotate(-3deg);  -moz-transform: rotate(-1deg); }
 
 
 /* ------------------------------------------------------------------ PAGINATION ---*/
@@ -80,9 +86,10 @@ a:hover{text-decoration:underline; }
 /* ------------------------------------------------------------------ LOGIN ---*/
 #extraDiv1 { position: absolute; top: 3px; right: 3px; display: block; width: 150px;  }
 #extraDiv1 a#login_link { float: right; padding: 10px; width: 160px; background: url(i/login.png) 90% 50% no-repeat; text-indent: -9999em; }
-#extraDiv1 form { display: none; float: left; width: 120px; padding: 20px 5px 5px 5px; background: #333; -moz-border-radius: 5px; -khtml-border-radius: 5px; -webkit-border-radius: 5px; border-radius: 5px; }
+#extraDiv1 form { display: none; float: left; width: 120px; padding: 20px 5px 5px 5px; background: #333; -moz-border-radius: 5px; -khtml-border-radius: 5px; -webkit-border-radius: 5px; border-radius: 5px; border: 1px solid #000; }
 #extraDiv1 form input[type="text"],
 #extraDiv1 form input[type="password"]  { display: block; float: left; width: 110px; border: 1px solid #111; margin: 0 0 10px 0; padding: 0; padding: 2px; font-size: 90%; color: #555; }
-
+#extraDiv1 form input[type="submit"] { display: block; margin: 0 auto; padding: 4px; webkit-border-radius: 5px; -moz-border-radius: 5px; border: 0; background: #ccc; cursor: pointer; border-right: 1px solid #eee; border-bottom: 1px solid #eee; }
+#extraDiv1 form input[type="submit"]:hover { background: #C7EE07; border-right: 1px solid #A7C807; border-bottom: 1px solid #A7C807; }
 
 

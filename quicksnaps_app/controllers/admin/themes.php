@@ -107,7 +107,7 @@ class Themes extends MY_Controller
 	}
 
 
-#	Adapted from Wordpress code
+//	Adapted from Wordpress code
 	function _get_theme_data( $theme_data, $folder_name )
 	{
 

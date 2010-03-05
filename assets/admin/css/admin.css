@@ -42,7 +42,7 @@ body#login #header, body#installer #header { border-bottom: 1px solid #000; }
 
 #toolbar { list-style: none; background: #2E3436; text-align: right; padding: 0 1ex; margin: 0; border-bottom: 1px solid #000; font-size: 1.3em; }
 #toolbar li { display: inline; padding-top: 10px; padding-bottom: 8px; margin-left: 0px; margin-top: 0px; }
-#toolbar li a { font-weight: normal; color: #FFFFFF; margin: 0 2ex; text-decoration: none; line-height: 30px; }
+#toolbar li a { font-weight: normal; color: #FFFFFF; margin: 0 2ex; text-decoration: none; line-height: 30px;  }
 #toolbar li a:hover, #toolbar li a:focus { text-decoration: underline; }
 #toolbar .menu_home { float: left;  padding-top: 0; padding-bottom: 0; }
 #toolbar .menu_home a { float: left; background: url(../i/home.png) 7px 50% no-repeat; margin-left: 0; padding-left: 27px; }
@@ -53,11 +53,11 @@ body#login #header, body#installer #header { border-bottom: 1px solid #000; }
 #tabs { float:left; width:100%;line-height:normal; }
 #tabs ul { margin:0; padding: 5px 15px 0; list-style:none; }
 #tabs li { float:right; margin:0 0 0 5px; }
-#tabs a { display:block; background: #bbb no-repeat right top; padding: 7px 20px; font-weight: normal; font-size: 110%; color:#000; float:none; }
+#tabs a { display:block; background: #bbb no-repeat right top; padding: 7px 20px; font-weight: normal; font-size: 110%; color:#000; float:none;  }
 #tabs a { -moz-border-radius-topright: 3px; -moz-border-radius-topleft: 3px; -webkit-border-radius-topright: 3px; -webkit-border-radius-topleft: 3px; border-radius-topright: 3px; border-radius-topleft: 3px; }
 
 #tabs a:hover, #tabs a:focus { background: #ddd; }
-#tabs .selected a { background: #fff; color:#333; padding-bottom:8px; }
+#tabs .selected a { background: #fff; color:#333; padding-bottom:8px;   }
 
 
 /*--------------- MAIN CONTENT ---------------*/

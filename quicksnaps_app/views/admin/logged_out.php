@@ -6,6 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Login</title>
 
+<link rel="stylesheet" href="<?php echo base_url(); ?>assets/admin/css/reset.css" type="text/css" media="screen" />
 <link rel="stylesheet" href="<?php echo base_url(); ?>assets/admin/css/admin.css" type="text/css" media="screen" />
 
 
@@ -19,6 +20,7 @@
 </div>
 
 
+	<div id="wrap">
 	<div id="content">
 
 
@@ -28,6 +30,7 @@
 			<p><a href="<?php echo base_url(); ?>">View your photos</a></p>
 		</div>
 
+	</div>
 	</div>
 
 

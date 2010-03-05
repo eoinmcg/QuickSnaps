@@ -1,14 +1,37 @@
 <?php
 
+/** 
+* Gallery Model 
+* These methods are to be accessed by both front and back end controllers,
+* hence the read only nature
+* 
+* @package		QuickSnaps
+* @author		Eoin McGrath
+* @link			http://www.starfishwebconsulting.co.uk/quicksnaps
+*/ 
+
+
 class Gallery_model extends Model {
 
-
+	/** 
+	* PHP4 Style contructor 
+	* [if(date('Y', time()) > 2006)) echo 'Flux Capacitor broken again??'] 
+	* 
+	* @access public
+	* @return void 
+	*/ 
     function Gallery_model()
     {
         parent::Model();
     }
-    
 
+    
+	/** 
+	* Load default theme for safe keeping
+	* 
+	* @access public 
+	* @return string 
+	*/ 
 	function get_default_theme()
 	{
 
@@ -22,29 +45,57 @@ class Gallery_model extends Model {
 	}
 
 
+	/** 
+	* Check if theme has some javascript associated jiggery pokery
+	* 
+	* @access public 
+	* @param string 
+	* @return boolean 
+	*/ 
 	function get_theme_js($theme)
 	{
 
 		if(file_exists('./themes/'.$theme.'/effects.js'))
+		{
 			return TRUE;
+		}
 		else
+		{
 			return FALSE;
+		}
 	}
 
 
+	/** 
+	* Check if theme has toolbar bling
+	* 
+	* @access public 
+	* @param string 
+	* @return boolean 
+	*/ 
 	function get_theme_favicon($theme)
 	{
 
 		if(file_exists('./themes/'.$theme.'/favicon.ico'))
+		{
 			$check = TRUE;
+		}
 		else
+		{
 			$check = FALSE;
+		}
 
         return $check;  
 
 	}
 
 
+	/** 
+	* Exactly what it says on the tin
+	* 
+	* @access public 
+	* @return int 
+	*/ 
 	function count_albums()
 	{
 
@@ -57,6 +108,14 @@ class Gallery_model extends Model {
 	}
 
 
+	/** 
+	* Grabs DB resource of albums within range (for pagination)
+	* 
+	* @access public 
+	* @param int
+	* @param int
+	* @return resource 
+	*/ 
     function get_albums($from, $to)
     {
 
@@ -65,13 +124,22 @@ class Gallery_model extends Model {
 		$query = $this->db->get('albums', $to, $from);
 
 		if(!$query->num_rows())
+		{
 			return FALSE;
+		}
 		else
-        	return $query;
+		{
+			return $query;
+		}
 
     }
 
-
+	/** 
+	* Counts all photos per album
+	* 
+	* @access public
+	* @return array 
+	*/
 	function get_albums_photo_count()
 	{
 
@@ -92,7 +160,16 @@ class Gallery_model extends Model {
 	}
 
 
-
+	/** 
+	* Get cover photo for album if set.
+	* Otherwise grab the first photo, if there is one
+	* and, if not, default to placeholder
+	* 
+	* @access public
+	* @param int
+	* @param string
+	* @return array 
+	*/
 	function album_cover($album, $size='thumb')
 	{
 
@@ -103,10 +180,20 @@ class Gallery_model extends Model {
 		$query = $this->db->get('photos');
 
 		if(!$query->num_rows())
-			return base_url().'/assets/i/no_photo.png';
-
-		$p = $query->row();
-
+		{
+			if($this->count_photos($album))
+			{
+				$p = $this->album_first_photo($album);
+			}
+			else
+			{
+				return base_url().'/assets/i/no_photo.png';
+			}
+		}
+		else
+		{
+			$p = $query->row();
+		}
 
 		return base_url().'/'.$p->photo.'_'.$size.$p->photo_type;
 
@@ -114,6 +201,43 @@ class Gallery_model extends Model {
 	}
 
 
+	/** 
+	* Get cover photo for album if set.
+	* Otherwise grab the first photo, if there is one
+	* and lastly default to placeholder
+	* 
+	* @access public
+	* @param int
+	* @return mixed 
+	*/
+	function album_first_photo($album)
+	{
+
+        $this->db->select('photo, photo_type');
+        $this->db->where('album =', $album);
+        $this->db->order_by('rank', 'asc');
+        $this->db->limit(1);
+		$query = $this->db->get('photos');
+
+		if(!$query->num_rows())
+		{
+			return base_url().'/assets/i/no_photo.png';
+		}
+
+		$p = $query->row();
+		
+		return $p;
+
+	}
+
+
+	/** 
+	* Count photos in album. Obvious, right?
+	* 
+	* @access public
+	* @param int
+	* @return int 
+	*/
 	function count_photos($album)
 	{
 
@@ -126,6 +250,13 @@ class Gallery_model extends Model {
 	}
 
 
+	/** 
+	* Get album title plus id, text, theme and private
+	* 
+	* @access public
+	* @param int
+	* @return array 
+	*/
     function get_album_title($album)
     {
 
@@ -138,12 +269,25 @@ class Gallery_model extends Model {
 
 		$row = $query->row();
 
-        return array('id' => $row->id, 'name' => $row->name, 'full_txt' => $row->full_txt, 'theme' => $row->theme, 'private' => $row->private);
+        return array
+		(
+				'id' => $row->id, 
+				'name' => $row->name, 
+				'full_txt' => $row->full_txt, 
+				'theme' => $row->theme, 
+				'private' => $row->private
+		);
 
     }
 
 
-
+	/** 
+	* Get album title plus id, text, theme and private
+	* 
+	* @access public
+	* @param int
+	* @return array 
+	*/
 	function get_photos($album)
 	{
 
@@ -155,12 +299,25 @@ class Gallery_model extends Model {
 
 	}
 
+
+	/** 
+	* Get id of album from URL slug
+	* 
+	* @access public
+	* @param string
+	* @return int 
+	*/
 	function get_album_id($album) 
 	{
 
         $this->db->select('id, name, url');
         $this->db->where('url =', $album);
 		$query = $this->db->get('albums');
+
+		if(!$query->num_rows())
+		{
+			return FALSE;
+		}
 
 		$name = $query->row();
 
@@ -169,6 +326,13 @@ class Gallery_model extends Model {
 	}
 
 
+	/** 
+	* Get photo and all it's bits from the db
+	* 
+	* @access public
+	* @param int
+	* @return object 
+	*/
 	function get_photo($id)
 	{
 
