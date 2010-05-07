@@ -14,7 +14,16 @@
 
 
 <!-- These extra divs/spans may be used as catch-alls to add extra imagery. [As seen on CSS Zen Garden] -->
-<div id="extraDiv1"><span><?php echo anchor('admin/login', 'Login', array('id' => 'login_link')); ?></span></div>
+<div id="extraDiv1">
+	<?php if ( $this->session->userdata('username') ): ?>
+		<span><?php echo anchor('/admin/albums', $this->session->userdata('username'), array('id' => 'logged_in_link')); ?></span>
+	<?php else : ?>
+		<span><?php echo anchor('/login', 'Login', array('id' => 'login_link')); ?></span>
+	<?php endif; ?>
+
+</div>
+
+
 <div id="extraDiv2"><span></span></div><div id="extraDiv3"><span></span></div>
 <div id="extraDiv4"><span></span></div><div id="extraDiv5"><span></span></div><div id="extraDiv6"><span></span></div>
 
@@ -31,3 +40,4 @@
 
 </body>
 </html>
+

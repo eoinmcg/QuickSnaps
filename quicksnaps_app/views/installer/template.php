@@ -6,9 +6,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>QuickSnaps - Installer</title>
 
-<link rel="stylesheet" href="<?php echo base_url(); ?>/assets/admin/css/admin.css" type="text/css" media="screen" />
-<link rel="stylesheet" href="<?php echo base_url(); ?>/assets/admin/css/installer.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="<?php echo base_url(); ?>assets/admin/css/admin.css" type="text/css" media="screen" />
 
+<link rel="shortcut icon" href="<?php echo base_url(); ?>favicon.ico" type="image/x-icon" />
 
 </head>
 
@@ -34,3 +34,4 @@
 </body>
 
 </html>
+

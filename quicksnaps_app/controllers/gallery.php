@@ -1,21 +1,26 @@
 <?php
-class Gallery extends MY_Controller {
+class Gallery extends QS_Controller {
 
-
+        /**
+         *
+         */
 	function Gallery()
 	{
-		parent::MY_Controller();	
+		parent::QS_Controller();
 
 
-    	$this->load->model('Gallery_model');
+                $this->load->model('Gallery_model');
 		$this->load->helper(array('smiley', 'text', 'form'));
 
 	}
 
-
+        /**
+         *
+         * @param <type> $page
+         */
 	function index($page=1)
 	{
-
+                //TODO: debug!
 
 		if ( ! $this->db->table_exists('settings') )
 		{
@@ -57,7 +62,7 @@ class Gallery extends MY_Controller {
 	}
 
 
-	function album($album_url=FALSE) 
+	function album($album_url=FALSE)
 	{
 
 		if(!$album_url)
@@ -125,8 +130,8 @@ class Gallery extends MY_Controller {
 		$total_pages = ceil ( $config['total_rows'] / $config['per_page'] );
 		$config['from'] = ($page == '1') ? 0 : $page  ;
 		$config['to'] = ($page == '1')
-            ? ($config['from'] + PER_PAGE)
-            : $config['from'] + PER_PAGE;
+                    ? ($config['from'] + PER_PAGE)
+                    : $config['from'] + PER_PAGE;
 
 		$config['full_tag_open'] = '<div class="pagination"> '."<strong>Viewing page ".$config['cur_page'];
 		$config['full_tag_open'] .= " of $total_pages </strong><br />";
@@ -141,5 +146,6 @@ class Gallery extends MY_Controller {
 }
 
 
-/* End of file gallery.php */ 
-/* Location: ./quicksnaps_app/controllers/gallery.php */ 
+/* End of file gallery.php */
+/* Location: ./quicksnaps_app/controllers/gallery.php */
+

@@ -6,14 +6,14 @@
 body  { margin: 0; padding: 0; color: #000;  text-align: center; background: #fff; font: 62%/1.5 "Lucida Grande", "Lucida Sans Unicode", Arial, Helvetica, sans-serif; }
 
 b, strong { font-weight: bold; }
-em {font-style: italic; } 
+em {font-style: italic; }
 
 p { margin: 0 0 10px 0; }
 
 a:link, a:visited { color: #369; text-decoration: none; font-weight: bold; }
 a:hover, a:focus { color: #900; text-decoration: none; }
 
-a img { border: 0; } 
+a img { border: 0; }
 
 
 /*--------------- STRUCTURE ---------------*/
@@ -64,8 +64,8 @@ body#login #header, body#installer #header { border-bottom: 1px solid #000; }
 #main p { margin 0 0 10px 0 !important; }
 p.warning { padding-left: 20px; padding-bottom: 5px; background: url(../i/warning.png) top left no-repeat;  }
 
-div.info { display: block; clear: left; margin: 1em auto; border: 1px solid #D5E0E4;  padding: 16px 40px; background: #EFF6F8 url(../i/info.png) 3px 3px no-repeat; } 
-div.error { display: block; clear: left; margin: 1em auto; border: 1px solid #D893A1;  padding: 16px 40px; background: #FBE6F2 url(../i/error.png) 3px 3px no-repeat; color: #900; } 
+div.info { display: block; clear: left; margin: 1em auto; border: 1px solid #D5E0E4;  padding: 16px 40px; background: #EFF6F8 url(../i/info.png) 3px 3px no-repeat; }
+div.error { display: block; clear: left; margin: 1em auto; border: 1px solid #D893A1;  padding: 16px 40px; background: #FBE6F2 url(../i/error.png) 3px 3px no-repeat; color: #900; }
 div.completed { display: block; clear: left; margin: 1em auto; padding: 16px 40px; border: 1px solid #e3e269;  background: #ffffb4 url(../i/tick.png) 3px 3px no-repeat; }
 div.warning { display: block; clear: left; margin: 1em auto; padding: 16px 40px; border: 1px solid #bbb;  background: #efefef url(../i/warning.png) 3px 3px no-repeat; font-weight: bold; font-size: 110%; }
 
@@ -191,7 +191,7 @@ span.true { padding: 2px 0 2px 20px; font-weight: bold; color #58A40E !important
 span.false { padding: 2px 0 2px 20px; font-weight: bold; color #600 !important; background: url(../i/warning.png) 0 50% no-repeat; }
 b.block { display: block; width: 200px; }
 p.title { font-size: 120%; }
-a.button { font-size: 120%; padding: 7px; background: #5C902A; color: #fff;  }
+a.button { font-size: 120%; padding: 7px; background: #5C902A; color: #fff; webkit-border-radius: 5px; -moz-border-radius: 5px; }
 a.button:hover { background: #6CB527; }
 a#install_button { margin: 20px; display: block;  width: 14em; text-align: center;  }
 
@@ -207,5 +207,4 @@ div.jGrowl div.jGrowl-notification {min-height: 40px;}
 div.jGrowl div.jGrowl-notification div.header {font-weight: bold;font-size:10px;}
 div.jGrowl div.jGrowl-notification div.close {z-index: 9999;float: right;font-weight: bold;font-size: 12px;cursor:pointer;}
 div.jGrowl div.jGrowl-closer {height: 15px;padding-top: 4px;padding-bottom: 4px;cursor: pointer;font-size:11px;font-weight: bold;text-align: center;}
-
 

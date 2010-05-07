@@ -35,15 +35,16 @@
 |
 | This route lets you set a "secret" word that will trigger the
 | scaffolding feature for added security. Note: Scaffolding must be
-| enabled in the controller in which you intend to use it.   The reserved 
+| enabled in the controller in which you intend to use it.   The reserved
 | routes must come before any wildcard or regular expression routes.
 |
 */
 
 $route['default_controller'] = "gallery";
-$route['admin'] = "admin/login";
+$route['admin'] = "admin/albums";
 $route['scaffolding_trigger'] = "";
 
 
 /* End of file routes.php */
 /* Location: ./system/application/config/routes.php */
+

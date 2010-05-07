@@ -1,12 +1,12 @@
 <?php
 
 
-class Photos extends MY_Controller
+class Photos extends QS_Controller
 {
 
 	function Photos()
 	{
-		parent::MY_Controller();
+		parent::QS_Controller();
 
 		$this->load->helper(array('form', 'text'));
 
@@ -65,7 +65,7 @@ class Photos extends MY_Controller
 		$this->output->set_header('Last-Modified: '.gmdate('D, d M Y H:i:s', time()).' GMT');
 		$this->output->set_header("Cache-Control: no-store, no-cache, must-revalidate");
 		$this->output->set_header("Cache-Control: post-check=0, pre-check=0");
-		$this->output->set_header("Pragma: no-cache"); 
+		$this->output->set_header("Pragma: no-cache");
 
 		$data['album'] = str_replace('album-', '', $parent);
 
@@ -76,13 +76,14 @@ class Photos extends MY_Controller
 		$data['album_name']	=	$this->Dashboard_model->edit_album_name($data['album']);
 
 		$data['query']	= $this->Dashboard_model->photos_edit($photo);
+
         if($data['query']->photo)
         {
             $data['image_size'] = getimagesize('.'.$data['query']->photo.'_mid'.$data['query']->photo_type);
-            
+
         }
 
-		$data['title']	= 'Editing <em>'.$data['query']->name.'</em>';	
+		$data['title']	= 'Editing <em>'.$data['query']->name.'</em>';
 		$data['back'] = 'admin/photos/show/'.$data['album'];
 		$data['delete'] = 'admin/photos/delete/'.$data['query']->id.'/'.$data['album'];
 		$data['h1']		= $data['title'];
@@ -276,7 +277,7 @@ class Photos extends MY_Controller
 		$this->Dashboard_model->set_key($data['key']);
 
 		$this->load->view('admin/dashboard', $data);
-		
+
 	}
 
 
@@ -361,5 +362,6 @@ class Photos extends MY_Controller
 }
 
 
-/* End of file photos.php */ 
+/* End of file photos.php */
 /* Location: ./quicksnaps_app/controllers/admin/photos.php */
+

@@ -1,5 +1,6 @@
 <?php
 
+
 class Installer_Model extends Model
 {
 
@@ -11,48 +12,109 @@ class Installer_Model extends Model
 	}
 
 
-	function is_installed()
+	/**
+	*
+	*  Has the db config been created?
+	*
+	*  @return bool
+	*
+	*/
+	function db_config_exists()
 	{
 
-		$this->db->limit(1);
-		$query = $this->db->get('auth');		
-
-		if(!$query->num_rows())
-			return FALSE;
-		else
+		if ( file_exists('./quicksnaps_app/config/database.php') )
+		{
 			return TRUE;
+		}
+		else
+		{
+			return FALSE;
+		}
 
 	}
 
 
-
-
-	function create_admin($user, $pass)
+	/**
+	*
+	*  Try and load the database
+	*
+	*  @return bool
+	*
+	*/
+	function db_installed()
 	{
-		$data['user'] = $user;
-		$data['pass'] = $pass;
 
-		$this->db->insert('auth', $data); 
+		require_once('./quicksnaps_app/config/database.php');
 
-		return TRUE;
+		$this->load->database();
+
+		if ($this->db->table_exists('auth'))
+		{
+		   return TRUE;
+		}
+		else
+		{
+			return FALSE;
+		}
+
 
 	}
 
 
+	/**
+	*
+	*  Create database structure
+	*
+	*  @param array
+	*  @return void
+	*
+	*/
+	function create_db_config($db)
+	{
+
+		$db_config = file_get_contents('./quicksnaps_app/config/database.php.txt');
+
+		$db_config = str_replace("HOSTNAME", $db['hostname'], $db_config);
+		$db_config = str_replace("USERNAME", $db['username'], $db_config);
+		$db_config = str_replace("PASSWORD", $db['password'], $db_config);
+		$db_config = str_replace("DATABASE", $db['database'], $db_config);
+		$db_config = str_replace("DBDRIVER", $db['dbdriver'], $db_config);
+		$db_config = str_replace("DBPREFIX", $db['dbprefix'], $db_config);
+
+
+		$config_file = './quicksnaps_app/config/database.php';
+		$fh = fopen($config_file, 'w') or die("can't open db config file");
+		fwrite($fh, $db_config);
+		fclose($fh);
+
+	}
+
+
+
+	/**
+	*
+	*  Create database structure
+	*
+	*  @return void
+	*
+	*/
     function create_db()
     {
 
 
 		$auth = array(
-									'id' 			=> array('type' => 'INT', 'constraint' => 11, 'auto_increment' => TRUE),									'user' 			=> array('type' => 'VARCHAR', 'constraint' => 12),
+									'id' 			=> array('type' => 'INT', 'constraint' => 11, 'auto_increment' => TRUE),
+									'user' 			=> array('type' => 'VARCHAR', 'constraint' => 12),
 									'pass'		    => array('type' => 'VARCHAR', 'constraint' => 64)
-									);		$this->dbforge->add_field($auth);
+									);
+		$this->dbforge->add_field($auth);
 		$this->dbforge->add_key('id', TRUE);
 		$this->dbforge->create_table('auth', TRUE);
 
 
 		$settings = array(
-									'id' 			=> array('type' => 'INT', 'constraint' => 11, 'auto_increment' => TRUE),									'name' 			=> array('type' => 'VARCHAR', 'constraint' => 128),
+									'id' 			=> array('type' => 'INT', 'constraint' => 11, 'auto_increment' => TRUE),
+									'name' 			=> array('type' => 'VARCHAR', 'constraint' => 128),
 									'summary'		=> array('type' => 'TEXT'),
 									'default_theme'	=> array('type' => 'VARCHAR', 'constraint' => 64),
 									'per_page'	    => array('type' => 'INT', 'constraint' => 5),
@@ -72,7 +134,8 @@ class Installer_Model extends Model
 
 
 		$albums = array(
-									'id' 			=> array('type' => 'INT', 'constraint' => 11, 'auto_increment' => TRUE),									'name' 			=> array('type' => 'VARCHAR', 'constraint' => 128),
+									'id' 			=> array('type' => 'INT', 'constraint' => 11, 'auto_increment' => TRUE),
+									'name' 			=> array('type' => 'VARCHAR', 'constraint' => 128),
 									'url'	    	=> array('type' => 'VARCHAR', 'constraint' => 128),
 									'full_txt'   	=> array('type' => 'TEXT'),
 									'theme'        	=> array('type' => 'VARCHAR', 'constraint' => 64),
@@ -86,7 +149,8 @@ class Installer_Model extends Model
 
 		$photos = array(
 									'id' 			=> array('type' => 'INT', 'constraint' => 11, 'auto_increment' => TRUE),
-									'album'	        => array('type' => 'INT', 'constraint' => 11),									'name' 			=> array('type' => 'VARCHAR', 'constraint' => 128),
+									'album'	        => array('type' => 'INT', 'constraint' => 11),
+									'name' 			=> array('type' => 'VARCHAR', 'constraint' => 128),
 									'photo'	    	=> array('type' => 'VARCHAR', 'constraint' => 128),
 									'photo_type'   	=> array('type' => 'VARCHAR', 'constraint' => 5),
 									'highlight'	    => array('type' => 'INT', 'constraint' => 1),
@@ -102,7 +166,7 @@ class Installer_Model extends Model
         // First let's find the best image lib;
             $this->load->helper('image');
             $libs = installed_image_libs();
-#print_r($libs);
+
             if(array_key_exists('ImageMagick', $libs) && $libs['ImageMagick'] !== FALSE)
             {
                 $lib = 'ImageMagick';
@@ -137,12 +201,34 @@ class Installer_Model extends Model
 		$this->db->insert('settings');
 
 
-
     }
+
+
+	/**
+	*
+	*  Create admin account
+	*
+	*  @param string
+	*  @param string md5
+	*
+	*  @return bool
+	*
+	*/
+	function create_admin($user, $pass)
+	{
+		$data['user'] = $user;
+		$data['pass'] = $pass;
+
+		$this->db->insert('auth', $data);
+
+		return TRUE;
+
+	}
 
 
 }
 
 
-/* End of file installer_model.php */ 
-/* Location: ./quicksnaps_app/models/installer_model.php */ 
+/* End of file installer_model.php */
+/* Location: ./quicksnaps_app/models/installer_model.php */
+

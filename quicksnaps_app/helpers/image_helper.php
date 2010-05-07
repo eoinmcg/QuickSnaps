@@ -33,13 +33,18 @@
 	{
 
 
+		$lib = (defined('LIB')) ? LIB : 'ImageMagick';
+		$lib_path = (defined('LIB_PATH')) ? LIB_PATH : '';
+
 		# If no path is set we're going to guess, obviously not ideal
-		$path = (LIB == 'ImageMagick' && LIB_PATH != '') ? LIB_PATH : '/usr/bin/convert';
+		$path = ($lib == 'ImageMagick' && $lib_path != '')
+			? $lib_path
+			: '/usr/bin/convert';
 
 		$convert_path = $path.' --version';
 		$return =  shell_exec($convert_path);
-		$x = preg_match('/Version: ImageMagick ([0-9]*\.[0-9]*\.[0-9]*)/', $return, $arr_return);
 
+		$x = preg_match('/Version: ImageMagick ([0-9]*\.[0-9]*\.[0-9]*)/', $return, $arr_return);
 
 		if(is_array($arr_return) && array_key_exists(1, $arr_return))
         {
@@ -53,7 +58,7 @@
 	}
 
 
- 
+
 	function is_installed_gd()
 	{
 		$gd = gd_info();
@@ -77,11 +82,6 @@
 	function is_installed_netpbm()
 	{
 #		NO IDEA HOW TO CHECK FOR THIS
-		return FALSE;		
+		return FALSE;
 	}
-
-
-
- 
-
 

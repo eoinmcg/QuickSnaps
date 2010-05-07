@@ -1,13 +1,13 @@
 <?php
 
-class Dashboard extends MY_Controller 
+class Dashboard extends QS_Controller
 {
 
 
-	function Dashboard() 
+	function Dashboard()
 	{
 
-		parent::MY_Controller();
+		parent::QS_Controller();
 
 		$this->load->model('Dashboard_model');
 		$this->load->model('Gallery_model');
@@ -15,7 +15,7 @@ class Dashboard extends MY_Controller
 	}
 
 
-	function index() 
+	function index()
 	{
 
 		$data['overview'] = $this->Dashboard_model->get_overview();
@@ -28,7 +28,7 @@ class Dashboard extends MY_Controller
 
 		$this->load->vars($data);
 		$this->load->view('admin/dashboard');
-			
+
 	}
 
 
@@ -45,19 +45,20 @@ class Dashboard extends MY_Controller
 	}
 
 
-	function logout() 
+	function logout()
 	{
 
 		$this->load->view('admin/logged_out');
 
         $this->session->sess_destroy();
 
-		
+
 	}
 
 
 }
 
 
-/* End of file dashboard.php */ 
+/* End of file dashboard.php */
 /* Location: ./quicksnaps_app/controllers/admin/dashboard.php */
+

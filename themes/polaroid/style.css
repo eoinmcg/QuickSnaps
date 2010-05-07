@@ -5,7 +5,7 @@ Description: Polaroid QuickSnaps theme
 Version: 1.0
 Author: Eoin McGrath
 Author URI: http://www.starfishwebconsulting.co.uk
-License: 
+License:
 	The CSS, XHTML is released under GPL:
 	http://www.opensource.org/licenses/gpl-license.php
 
@@ -54,7 +54,7 @@ a:hover{text-decoration:underline; }
 
 /* ------------------------------------------------------------------ PHOTOS ---*/
 
-a#back { background: #ddd; color: #232323; padding: 3px 5px; webkit-border-radius: 3px; -moz-border-radius: 3px; border-bottom: 1px solid #ccc; border-right: 1px solid #ccc; opacity: 0.5; }
+a#back { background: #aaa; color: #232323; padding: 3px 5px; webkit-border-radius: 3px; -moz-border-radius: 3px; border-bottom: 1px solid #ccc; border-right: 1px solid #ccc; opacity: 0.5; }
 a#back:hover { background: #C7EE07; text-decoration: none; border-bottom: 1px solid #89A404; border-right: 1px solid #89A404; opacity: 1.0; }
 
 .photo { display: block; float: left; padding: 5px; background: #fff; margin: 0 15px 20px 0; -webkit-border-radius: 2px; -moz-border-radius: 2px;   }
@@ -85,11 +85,11 @@ a#back:hover { background: #C7EE07; text-decoration: none; border-bottom: 1px so
 
 /* ------------------------------------------------------------------ LOGIN ---*/
 #extraDiv1 { position: absolute; top: 3px; right: 3px; display: block; width: 150px;  }
+#extraDiv1 a#logged_in_link { float: right; padding: 7px 7px 7px 20px; background: url(i/logged_in.png) 0 50% no-repeat; color: #ccc;  }
 #extraDiv1 a#login_link { float: right; padding: 10px; width: 160px; background: url(i/login.png) 90% 50% no-repeat; text-indent: -9999em; }
 #extraDiv1 form { display: none; float: left; width: 120px; padding: 20px 5px 5px 5px; background: #333; -moz-border-radius: 5px; -khtml-border-radius: 5px; -webkit-border-radius: 5px; border-radius: 5px; border: 1px solid #000; }
 #extraDiv1 form input[type="text"],
 #extraDiv1 form input[type="password"]  { display: block; float: left; width: 110px; border: 1px solid #111; margin: 0 0 10px 0; padding: 0; padding: 2px; font-size: 90%; color: #555; }
 #extraDiv1 form input[type="submit"] { display: block; margin: 0 auto; padding: 4px; webkit-border-radius: 5px; -moz-border-radius: 5px; border: 0; background: #ccc; cursor: pointer; border-right: 1px solid #eee; border-bottom: 1px solid #eee; }
 #extraDiv1 form input[type="submit"]:hover { background: #C7EE07; border-right: 1px solid #A7C807; border-bottom: 1px solid #A7C807; }
-
 

@@ -3,20 +3,12 @@ HOW TO INSTALL
 
 - Unzip and upload (or vice-versa should you be that way inclined)
 
-
-- Modify quicksnaps_app/config/config.php as needed
-    [line 14] $config['base_url']
-    [line 26] $config['index_page']
-
-
-- Modify quicksnaps_app/config/database.php
-    - [lines 40-45]
-
-
 - Make sure the 'uploads' directory is writeable
 
+- Make sure the 'quicksnaps_app/config' directory is writeable (you can change back after install)
 
-- Point your browser to where you have installed QuickSnaps and set up admin account
+- Point your browser to where you have installed QuickSnaps and set up database and admin account
 
 
 - Enjoy!
+

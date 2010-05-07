@@ -1,11 +1,11 @@
 <?php
 
-class Albums extends MY_Controller
+class Albums extends QS_Controller
 {
 
     function Albums()
 	{
-		parent::MY_Controller();
+		parent::QS_Controller();
 
 		$this->load->model('Dashboard_model');
 		$this->load->model('Gallery_model');
@@ -103,8 +103,8 @@ class Albums extends MY_Controller
 
 		redirect('admin/photos/show/'.$submit_id, 'refresh');
 		exit;
-			
-		
+
+
 	}
 
 
@@ -118,7 +118,7 @@ class Albums extends MY_Controller
 			exit;
 		}
 
-		$this->Dashboard_model->albums_delete($id);	
+		$this->Dashboard_model->albums_delete($id);
 
         $feedback = 'Album deleted';
 
@@ -157,5 +157,6 @@ class Albums extends MY_Controller
 }
 
 
-/* End of file albums.php */ 
+/* End of file albums.php */
 /* Location: ./quicksnaps_app/controllers/admin/albums.php */
+

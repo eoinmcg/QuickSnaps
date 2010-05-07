@@ -1,16 +1,16 @@
 <?php
 
 
-class Installer extends MY_Controller
+class Installer extends Install_Controller
 {
 
 	function Installer()
 	{
-		parent::MY_Controller();
+		parent::Install_Controller();
 
         $this->load->helper('image');
 
-		$this->load->library('form_validation');
+		$this->load->library(array('form_validation', 'session'));
 
 		$this->load->model('Installer_model');
 
@@ -21,25 +21,22 @@ class Installer extends MY_Controller
     function index()
 	{
 
-		if ( ! $this->db->table_exists('settings'))
-		{
-            $this->load->dbforge();
-            $this->Installer_model->create_db();
-	    }
-
-
-        if( $this->Installer_model->is_installed())
-        {
-            die('QuickSnaps is already installed');
-        }
+		$this->_check_installed();
 
         $uploads = is_writable('./uploads');
+		$config  = is_writable('./quicksnaps_app/config');
 
 		$data['title'] = 'QuickSnaps - Installing';
 		$data['view'] = 'start';
-        $data['uploads_writable'] = ($uploads) 
+
+		$data['config_writable'] = ($config)
+			? '<span class="true">WRITABLE</span>'
+			: '<span class="true">IS NOT WRITABLE</span>';
+
+        $data['uploads_writable'] = ($uploads)
             ? '<span class="true">WRITABLE</span>'
             : '<span class="true">IS NOT WRITABLE</span>';
+
         $data['image_libs'] = installed_image_libs();
 
 		$this->load->vars($data);
@@ -48,35 +45,59 @@ class Installer extends MY_Controller
 	}
 
 
-	function create()
+
+	function create_database()
 	{
 
-        if( $this->Installer_model->is_installed())
-        {
-            die('QuickSnaps is already installed');
-        }
+		$this->_check_installed();
+
+		$this->form_validation->set_rules('uname', 'Your Username', 'trim|required|xss_clean');
+		$this->form_validation->set_rules('pword', 'Your Password', 'trim|required|xss_clean');
+
+		$this->form_validation->set_rules('hostname', 'Database Hostname', 'trim|required|xss_clean');
+		$this->form_validation->set_rules('username', 'Database Username', 'trim|required|xss_clean');
+		$this->form_validation->set_rules('password', 'Database Password', 'trim|required|xss_clean');
 
 
-		$this->form_validation->set_rules('username', 'Username', 'trim|required|min_length[4]|max_length[12]|xss_clean');
-		$this->form_validation->set_rules('password', 'Password', 'trim|required|matches[passconf]|md5');
-		$this->form_validation->set_rules('passconf', 'Password Confirmation', 'trim|required');
-				
+
 		if ($this->form_validation->run() == FALSE)
 		{
 			$data['title'] = 'Create Admin Account';
-			$data['view'] = 'setup_form';
+			$data['view'] = 'install_form';
 
 		}
 		else
 		{
 
-			$data['title'] = 'Created Admin account';
-			$data['view'] = 'finished';
+			$data['title'] = 'Create Database';
+			$data['view'] = 'install_form';
 
-			$user = $this->input->post('username');
-			$pass = $this->input->post('password');
+			$db_config = array(
+				'hostname' => $this->input->post('hostname'),
+				'database' => $this->input->post('database'),
+				'username' => $this->input->post('password'),
+				'password' => $this->input->post('password'),
+				'dbdriver' => $this->input->post('dbdriver'),
+				'dbprefix' => $this->input->post('dbprefix')
+			);
+
+			//create a database config file
+			$this->Installer_model->create_db_config($db_config);
+			$this->load->database();
+			$this->load->dbforge();
+			$this->Installer_model->create_db();
+
+			//create admin account
+			$user = $this->input->post('uname');
+			$pass = md5($this->input->post('pword'));
 
 			$this->Installer_model->create_admin($user, $pass);
+
+			//log in and redirect to dashboard
+			$this->load->model('Login_model');
+			$this->Login_model->do_login($user, $pass);
+			$this->session->set_flashdata('just_installed', 1);
+			redirect('/admin/albums/', 'refresh');
 
 
 		}
@@ -84,11 +105,37 @@ class Installer extends MY_Controller
 			$this->load->vars($data);
 			$this->load->view('/installer/template');
 
+
+	}
+
+
+
+	function _check_installed()
+	{
+
+
+        if( $this->Installer_model->db_config_exists())
+        {
+			if($this->Installer_model->db_installed())
+			{
+            	show_error('QuickSnaps is already installed');
+			}
+			else
+			{
+				return FALSE;
+			}
+        }
+		else
+		{
+			return FALSE;
+		}
+
 	}
 
 
 }
 
 
-/* End of file installer.php */ 
-/* Location: ./quicksnaps_app/controllers/installer.php */ 
+/* End of file installer.php */
+/* Location: ./quicksnaps_app/controllers/installer.php */
+

@@ -4,14 +4,14 @@ class Login_model extends Model {
 
 
 
-	function Login_model() 
+	function Login_model()
 	{
 		parent::Model();
 	}
 
 
 
-	function login_user($u, $p) 
+	function do_login($u, $p)
 	{
 
 		$p = md5($p);
@@ -21,13 +21,13 @@ class Login_model extends Model {
 		$this->db->limit(1);
 		$query = $this->db->get('auth');
 
-        
-		if($query->num_rows()) 
+
+		if($query->num_rows())
 		{
-			$user = $query->row();
-			return $user->user;
+			$this->session->set_userdata(array('username' => $u));
+			return TRUE;
 		}
-		else 
+		else
 		{
 			return FALSE;
 		}
@@ -38,5 +38,6 @@ class Login_model extends Model {
 }
 
 
-/* End of file login_model.php */ 
-/* Location: ./quicksnaps_app/models/login_model.php */ 
+/* End of file login_model.php */
+/* Location: ./quicksnaps_app/models/login_model.php */
+

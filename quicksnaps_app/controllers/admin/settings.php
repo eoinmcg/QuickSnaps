@@ -1,13 +1,13 @@
 <?php
 
 
-class Settings extends MY_Controller
+class Settings extends QS_Controller
 {
 
 
 	function Settings()
 	{
-		parent::MY_Controller();
+		parent::QS_Controller();
 
 		$this->load->helper('form');
 
@@ -98,5 +98,6 @@ class Settings extends MY_Controller
 }
 
 
-/* End of file settings.php */ 
-/* Location: ./quicksnaps_app/controllers/admin/settings.php */ 
+/* End of file settings.php */
+/* Location: ./quicksnaps_app/controllers/admin/settings.php */
+

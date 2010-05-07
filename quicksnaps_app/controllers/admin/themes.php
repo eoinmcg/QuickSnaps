@@ -2,13 +2,13 @@
 
 define("THEME_DIR", './themes/');
 
-class Themes extends MY_Controller
+class Themes extends QS_Controller
 {
 
 
 	function Themes()
 	{
-		parent::MY_Controller();
+		parent::QS_Controller();
 
 		$this->load->helper(array('file', 'directory'));
 
@@ -74,9 +74,9 @@ class Themes extends MY_Controller
 
 		$subdirs = array();
 
-		if ($handle = opendir($path)) 
+		if ($handle = opendir($path))
 		{
-			while (false !== ($file = readdir($handle))) 
+			while (false !== ($file = readdir($handle)))
 			{
 
 				if(is_dir($path.$file) && $file != "." && $file != "..")
@@ -158,22 +158,22 @@ class Themes extends MY_Controller
 		$theme_uri = trim($theme_uri[1]);
 		$description = trim($description[1]);
 
-		if ( preg_match( '|Author:(.*)$|mi', $theme_data, $author_name ) ) 
+		if ( preg_match( '|Author:(.*)$|mi', $theme_data, $author_name ) )
 		{
 			$author = trim( $author_name[1] );
-		} 
-		else 
+		}
+		else
 		{
 			$author = 'Anonymous';
 		}
 
-		return array( 
-				'name' => $name, 
-				'title' => $theme, 
-				'uri' => $theme_uri, 
+		return array(
+				'name' => $name,
+				'title' => $theme,
+				'uri' => $theme_uri,
 				'preview' => $preview,
-				'description' => $description, 
-				'author' => $author, 
+				'description' => $description,
+				'author' => $author,
 				'author_uri' => $author_uri,
 				'version' => $version
 				);
@@ -182,5 +182,6 @@ class Themes extends MY_Controller
 }
 
 
-/* End of file themes.php */ 
-/* Location: ./quicksnaps_app/controllers/admin/themes.php */ 
+/* End of file themes.php */
+/* Location: ./quicksnaps_app/controllers/admin/themes.php */
+
