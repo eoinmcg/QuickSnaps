@@ -1,24 +1,35 @@
-<?php
+<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-
+/**
+* Login Model
+*
+* @package		QuickSnaps
+* @subpackage	Installer
+* @author		Eoin McGrath
+* @link			http://www.starfishwebconsulting.co.uk/quicksnaps
+*/
 class Installer_Model extends Model
 {
 
+	/**
+	 * Constructor
+	 *
+	 * @access public
+	 * @return void
+	 */ 
 	function Installer_Model()
 	{
 		parent::Model();
-
 
 	}
 
 
 	/**
-	*
-	*  Has the db config been created?
-	*
-	*  @return bool
-	*
-	*/
+	 * Has the database been created
+	 *
+	 * @access public
+	 * @return bool
+	 */ 
 	function db_config_exists()
 	{
 
@@ -208,9 +219,9 @@ class Installer_Model extends Model
 	*
 	*  Create admin account
 	*
+	* @access public
 	*  @param string
 	*  @param string md5
-	*
 	*  @return bool
 	*
 	*/

@@ -1,25 +1,27 @@
 <?php
 
-/** 
-* Dashboard Model 
+/**
+* Dashboard Model
 * These methods only to be accessed via logged in user
-* 
+*
 * @package		QuickSnaps
 * @author		Eoin McGrath
 * @link			http://www.starfishwebconsulting.co.uk/quicksnaps
-*/ 
+*/
 
 class Dashboard_model extends Model {
 
 
-	/** 
-	* PHP4 Style contructor 
-	* [if(date('Y', time()) > 2006)) echo 'Flux Capacitor broken again??'] 
-	* 
+	/**
+	* PHP4 Style contructor
+	* [if(date('Y', time()) > 2006)) echo 'Flux Capacitor broken again??']
+	*
+	* TODO: Model getting too fat - split into submodels (albums, photos, misc?)
+	*
 	* @access public
-	* @return void 
-	*/ 
-	function Dashboard_model() 
+	* @return void
+	*/
+	function Dashboard_model()
 	{
 		parent::Model();
 
@@ -27,12 +29,12 @@ class Dashboard_model extends Model {
 	}
 
 
-	/** 
+	/**
 	* A brief synopsis of albums & photos
-	* 
-	* @access public 
-	* @return array 
-	*/ 
+	*
+	* @access public
+	* @return array
+	*/
 	function get_overview()
 	{
 
@@ -43,8 +45,8 @@ class Dashboard_model extends Model {
 		$max_upload = GALLERY_MAX_UPLOAD / 1024;
 		return array
 				(
-					'albums' => $albums, 
-					'photos' => $photos, 
+					'albums' => $albums,
+					'photos' => $photos,
 					'max_upload' => $max_upload.' MB'
 				);
 
@@ -52,12 +54,12 @@ class Dashboard_model extends Model {
 
 
 
-	/** 
+	/**
 	* Find all themes in the themes directory
-	* 
-	* @access public 
-	* @return array 
-	*/ 
+	*
+	* @access public
+	* @return array
+	*/
 	function get_themes()
 	{
 
@@ -70,12 +72,12 @@ class Dashboard_model extends Model {
 	}
 
 
-	/** 
+	/**
 	* Get DB record for default theme
-	* 
-	* @access public 
-	* @return object 
-	*/ 
+	*
+	* @access public
+	* @return object
+	*/
 	function get_default_theme()
 	{
 
@@ -89,13 +91,13 @@ class Dashboard_model extends Model {
 	}
 
 
-	/** 
+	/**
 	* Update settings record
-	* 
-	* @access public 
-	* @access array 
-	* @return void 
-	*/ 
+	*
+	* @access public
+	* @access array
+	* @return void
+	*/
 	function update_settings($data)
 	{
 
@@ -105,19 +107,37 @@ class Dashboard_model extends Model {
 	}
 
 
+	/**
+	* Change user password
+	*
+	* @access public
+	* @access string
+	* @return void
+	*/
+	function change_password($pass)
+	{
+		$user = $this->session->userdata('user');
+
+		$data = array('pass' => $pass);
+
+	 	$this->db->where('user', $user);
+		$this->db->update('auth', $data);
+
+	}
+
 
 /* -------------------------------------------------------------
 														ALBUMS
  ------------------------------------------------------------- */
 
-	/** 
+	/**
 	* Get all albums
 	* NOTE: gallery_model's method only selects non private
 	* and is paginagated
-	* 
-	* @access public 
-	* @return resource 
-	*/ 
+	*
+	* @access public
+	* @return resource
+	*/
     function get_albums()
     {
 
@@ -129,7 +149,7 @@ class Dashboard_model extends Model {
     }
 
 
-	function album_count_photos($album) 
+	function album_count_photos($album)
 	{
 
 		$this->db->where('album', $album);
@@ -195,9 +215,9 @@ class Dashboard_model extends Model {
 	function update_album($data)
 	{
 
-		if(!$data['id']) 
+		if(!$data['id'])
 		{
-			$this->db->insert('albums', $data);	
+			$this->db->insert('albums', $data);
             $id = $this->db->insert_id();
 
 			if(empty($data['name']))
@@ -243,7 +263,7 @@ class Dashboard_model extends Model {
 /* -------------------------------------------------------------
 														PHOTOS
  ------------------------------------------------------------- */
-	function photos_get($id) 
+	function photos_get($id)
     {
 
         $this->db->select('id, name, album ,photo, photo_type, highlight');
@@ -256,7 +276,7 @@ class Dashboard_model extends Model {
 	}
 
 
-	function photos_edit($id) 
+	function photos_edit($id)
     {
 
         $this->db->where('id', $id);
@@ -327,14 +347,14 @@ class Dashboard_model extends Model {
                     return $errors;
 
 				}
-				else 
+				else
 				{
 
 
 					$file = array('upload_data' => $this->upload->data());
 					chmod($file['upload_data']['full_path'], 0777);
 
-					
+
 					$data['photo'] = substr($folder.$file['upload_data']['raw_name'], 1);
 					$data['photo_type'] = $file['upload_data']['file_ext'];
 
@@ -345,10 +365,10 @@ class Dashboard_model extends Model {
 
 
 
-		if(!array_key_exists('id', $data)) 
+		if(!array_key_exists('id', $data))
 		{
 			$data['rank'] = time();
-			$this->db->insert('photos', $data);	
+			$this->db->insert('photos', $data);
 		}
 		else
 		{
@@ -397,7 +417,7 @@ class Dashboard_model extends Model {
 		if(!$photos_only)
 		{
 			$this->db->where('id', $id);
-			$this->db->delete('photos'); 
+			$this->db->delete('photos');
 		}
 
 		if(!empty($row->photo))
@@ -436,7 +456,7 @@ class Dashboard_model extends Model {
 
 
 		// NOW WIPE THE ALBUM
-        $this->db->delete('albums', array('id' => $album)); 
+        $this->db->delete('albums', array('id' => $album));
 
 
 	}
@@ -475,7 +495,7 @@ class Dashboard_model extends Model {
 					$this->upload->display_errors();
 					exit();
 				}
-				else 
+				else
 				{
 
 					$file = array('upload_data' => $this->upload->data());
@@ -490,10 +510,10 @@ class Dashboard_model extends Model {
 	}
 
 
-	function _resize_pic($path) 
+	function _resize_pic($path)
 	{
 
-   
+
 			$images = array();
 			$dim = getimagesize($path);
 			$this->load->library('image_lib');
@@ -555,7 +575,7 @@ class Dashboard_model extends Model {
 
 	}
 
-	
+
 	function _create_thumb($path)
 
 	{
@@ -633,6 +653,19 @@ class Dashboard_model extends Model {
 	}
 
 
+/* -------------------------------------------------------------
+														Uploadify
+ ------------------------------------------------------------- */
+
+	/**
+	* Set a key in db
+	*
+	* Uploadify isn't verified by session this is a failsafe
+	* to avoid unauthorised uploading
+	*
+	* @access public
+	* @param string
+	*/
 	function set_key($key)
 	{
 
@@ -644,6 +677,14 @@ class Dashboard_model extends Model {
 	}
 
 
+	/**
+	* Get key from db
+	*
+	* Assumes only one admin user
+	*
+	* @access public
+	* @return object
+	*/
 	function get_key()
 	{
 
@@ -659,6 +700,14 @@ class Dashboard_model extends Model {
 	}
 
 
+	/**
+	* Check DB key matches the one posted with uploadify
+	*
+	*
+	* @access public
+	* @param bool
+	* @return bool
+	*/
 	function check_key($key)
 	{
 
@@ -680,5 +729,6 @@ class Dashboard_model extends Model {
 }
 
 
-/* End of file dashboard_model.php */ 
-/* Location: ./quicksnaps_app/models/dashboard_model.php */ 
+/* End of file dashboard_model.php */
+/* Location: ./quicksnaps_app/models/dashboard_model.php */
+

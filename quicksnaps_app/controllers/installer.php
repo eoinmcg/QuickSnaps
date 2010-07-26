@@ -1,9 +1,27 @@
-<?php
+<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 
+/**
+* Installer
+*
+* Attempts to check if setup is usable, then creates db and user account
+* If successful user is redirect to Admin panel
+* TODO: Provision for errors
+*
+* @package		Quicksnaps
+* @subpackage	Installer
+* @author		Eoin McGrath
+* @link			http://www.starfishwebconsulting.co.uk/quicksnaps
+*/
 class Installer extends Install_Controller
 {
 
+	/**
+	 * Constructor
+	 *
+	 * @access public
+	 * @return void
+	 */ 
 	function Installer()
 	{
 		parent::Install_Controller();
@@ -18,6 +36,12 @@ class Installer extends Install_Controller
 	}
 
 
+	/**
+	 * index - Installer home
+	 *
+	 * @access public
+	 * @return void
+	 */ 
     function index()
 	{
 
@@ -45,7 +69,12 @@ class Installer extends Install_Controller
 	}
 
 
-
+	/**
+	 * Creates Database, admin account and redirect to Admin panel
+	 *
+	 * @access public
+	 * @return void
+	 */ 
 	function create_database()
 	{
 
@@ -89,13 +118,14 @@ class Installer extends Install_Controller
 
 			//create admin account
 			$user = $this->input->post('uname');
-			$pass = md5($this->input->post('pword'));
+			$pass_enc = md5($this->input->post('pword'));
 
-			$this->Installer_model->create_admin($user, $pass);
+			$this->Installer_model->create_admin($user, $pass_enc);
 
 			//log in and redirect to dashboard
 			$this->load->model('Login_model');
-			$this->Login_model->do_login($user, $pass);
+			$this->Login_model->do_login($user, $this->input->post('pword'));
+			
 			$this->session->set_flashdata('just_installed', 1);
 			redirect('/admin/albums/', 'refresh');
 
@@ -109,7 +139,15 @@ class Installer extends Install_Controller
 	}
 
 
-
+	/**
+	 * Check if QuickSnaps is already installed
+	 *
+	 * Checks if config/database.php has been created
+	 * Checks if database already exits
+	 *
+	 * @access private
+	 * @return bool
+	 */ 
 	function _check_installed()
 	{
 

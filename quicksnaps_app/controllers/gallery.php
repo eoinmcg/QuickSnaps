@@ -1,32 +1,45 @@
-<?php
+<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+
+
+/**
+ * Gallery Controller
+ *
+ * @package		QuickSnaps
+ * @subpackage	FrontEnd
+ * @author		Eoin McGrath
+ * @link		http://www.starfishwebconsulting.co.uk/quicksnaps
+ */
+
 class Gallery extends QS_Controller {
 
-        /**
-         *
-         */
+
+	/**
+	 * Gallery Constructor Class
+	 *
+	 * This is the default controller
+	 * Loads model and necessary helpers
+	 * NOTE: Parent Controller checks if installed
+	 *
+	 */
 	function Gallery()
 	{
 		parent::QS_Controller();
 
-
-                $this->load->model('Gallery_model');
+		$this->load->model('Gallery_model');
 		$this->load->helper(array('smiley', 'text', 'form'));
 
 	}
 
-        /**
-         *
-         * @param <type> $page
-         */
-	function index($page=1)
-	{
-                //TODO: debug!
 
-		if ( ! $this->db->table_exists('settings') )
-		{
-			redirect('/installer', 'refresh');
-			exit;
-		}
+	/**
+	 * Render the main gallery index
+	 *
+	 * @access	public
+	 * @param	string
+	 * @return	void
+	 */
+	public function index($page=1)
+	{
 
 
 		$data['title'] 		= GALLERY_NAME.' | Welcome';
@@ -62,7 +75,14 @@ class Gallery extends QS_Controller {
 	}
 
 
-	function album($album_url=FALSE)
+	/**
+	 * Insert items into the cart and save it to the session table
+	 *
+	 * @access	public
+	 * @param	string
+	 * @return	void
+	 */
+	function album($album_url=FALSE, $photo_id=FALSE)
 	{
 
 		if(!$album_url)
@@ -77,9 +97,15 @@ class Gallery extends QS_Controller {
 			show_404();
 		}
 
+		if($photo_id)
+		{
+			return $this->view_photo($album, $photo_id);
+		}
+
 		$data['title']				= 'Album: '.$album['name'];
 		$data['heading']			= $album['name'];
 		$data['album']				= $album['name'];
+		$data['album_url']			= $album['url'];
 		$data['theme']				= $album['theme'];
 		$data['private']			= $album['private'];
 		$data['js']					= $this->Gallery_model->get_theme_js($data['theme']);
@@ -100,14 +126,26 @@ class Gallery extends QS_Controller {
 	}
 
 
-	function admin()
+	function view_photo($album, $photo_id=FALSE)
 	{
 
-		redirect(base_url().'admin/login/', 'refresh');
-		exit;
+		var_dump($album);
+        var_dump($photo_id);
+
+        $photo = $this->Gallery_model->get_photo($photo_id);
+
+        var_dump($photo);
+
 	}
 
 
+	/**
+	 * Calculate number pages and settings for pagination
+	 *
+	 * @access	private
+	 * @param	string
+	 * @return	array
+	 */
 	function _pagination_links()
 	{
 
@@ -140,7 +178,6 @@ class Gallery extends QS_Controller {
 		return $config;
 
 	}
-
 
 
 }

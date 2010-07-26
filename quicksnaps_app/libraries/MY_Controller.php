@@ -1,13 +1,20 @@
 <?php
 
+/**
+ * MY Controller class
+ *
+ * Extends the base class and loads Install and Quicksnap Controllers
+ *
+ * @package		QuickSnaps
+ * @author		Eoin McGrath
+ * @link		http://www.starfishwebconsulting.co.uk/quicksnaps
+ */
 class MY_Controller extends Controller
 {
 
     function MY_Controller()
     {
         parent::Controller();
-
-
     }
 
 }

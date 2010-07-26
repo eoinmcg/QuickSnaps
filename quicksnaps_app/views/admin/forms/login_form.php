@@ -27,7 +27,7 @@
 
 		<h2>Login</h2>
 
-        <?php echo form_open('admin/login'); ?>
+        <?php echo form_open('/login'); ?>
 
 			<div>
 				<label>Username:</label>
@@ -57,3 +57,4 @@
 </body>
 
 </html>
+

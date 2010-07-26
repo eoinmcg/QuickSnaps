@@ -22,7 +22,7 @@
 		<h3><?php echo $name?></h3>
 				<?php if(is_array($theme)): ?>
 					<a href="<?php echo base_url().$theme['preview']?>" 
-                        title="Preview of <?php echo $theme['name']?> theme" rel="lightbox">
+                        title="Preview of <?php echo $theme['name']?> theme" class="lightbox">
                         <img src="<?php echo base_url().$theme['preview']?>" 
                             class="preview" width="150" 
                             alt="Preview of <?php echo $theme['name']; ?>" />

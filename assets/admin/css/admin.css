@@ -106,6 +106,8 @@ form div.hide { border: 0 !important; }
 form label, #loginForm label {width: 115px; float: left; }
 form textarea {width: 300px; border: 1px solid #777; }
 form div img { display: block; float: left; clear; left; margin: 10px;}
+form div p.note { display: block; margin: 2px 0 2px 135px; color: #555; font-size: 90%; }
+form select { width: 300px !important;  }
 form input[type="text"] { width: 300px !important; border: 1px solid #777; padding: 2px;  }
 form input[type="password"] { width: 300px !important; border: 1px solid #777; padding: 2px;  }
 form input.small { width: 4em !important;  }
@@ -115,7 +117,7 @@ form select, form select option { margin-right: 0 !important; }
 
 form div.submit { display: block; float: left; clear; both; width: 100%; }
 form div.submit.active { background: #fff; }
-form input[type="submit"] { padding: 10px; background: #477e14; color: #fff; border: 0; webkit-border-radius: 5px; -moz-border-radius: 5px; }
+form input[type="submit"] {margin: 0 0 0 135px;  padding: 10px; background: #477e14; color: #fff; border: 0; webkit-border-radius: 5px; -moz-border-radius: 5px; }
 form input[type="submit"]:hover, form input[type="submit"]:focus { background: #274a05; cursor: pointer; }
 
 body#login input[type="submit"] { background: #222; }
@@ -207,4 +209,7 @@ div.jGrowl div.jGrowl-notification {min-height: 40px;}
 div.jGrowl div.jGrowl-notification div.header {font-weight: bold;font-size:10px;}
 div.jGrowl div.jGrowl-notification div.close {z-index: 9999;float: right;font-weight: bold;font-size: 12px;cursor:pointer;}
 div.jGrowl div.jGrowl-closer {height: 15px;padding-top: 4px;padding-bottom: 4px;cursor: pointer;font-size:11px;font-weight: bold;text-align: center;}
+
+#feedback a { display: block; position: fixed; top: 300px; left: -29px; background: #030; padding: 10px; border: 1px solid #030; font-size: 14px; color: #fff; -webkit-transform: rotate(-90deg); -moz-transform: rotate(-90deg);	filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3); webkit-border-radius: 5px; -moz-border-radius: 5px; }
+#feedback a:hover { background: green; border: 1px solid #030; left: -27px; }
 

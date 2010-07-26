@@ -4,6 +4,14 @@ $(document).ready(function(){
 
 	$('.album').pinball();
 
+	$('a.frame').fancybox({
+		'titlePosition' : 'inside',
+		'transitionIn'	:	'elastic',
+		'transitionOut'	:	'elastic',
+		'speedIn'		:	600, 
+		'speedOut'		:	200
+	});
+
 
 //  Insert a login form into the DOM using jQuery
     var loginForm = jQuery(document.createElement('form'));
@@ -38,6 +46,7 @@ $(document).ready(function(){
 
     $('a#login_link').click(function () {
         $('#login_form').toggle('slow');
+        $('#login_form input:first').focus();
         return false;
     });
 

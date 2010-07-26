@@ -10,6 +10,7 @@
 
 <link type="text/css" rel='stylesheet' href="<?php echo base_url(); ?>assets/admin/css/admin.css" media="screen, projection" />
 <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/slimbox2.css" media="screen" />
+<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/fancybox/jquery.fancybox-1.3.1.css" media="screen" />
 
 <link rel="shortcut icon" href="<?php echo base_url(); ?>favicon.ico" type="image/x-icon" />
 <link rel="icon" href="<?php echo base_url(); ?>favicon.ico" type="image/x-icon" />
@@ -69,6 +70,9 @@
                     ? $class = ' class="selected"' 
                     : $class = ''; 
                 ?>
+                <li<?php echo $class; ?>>
+                    <?php echo anchor('admin/dashboard', 'Dashboard'); ?>
+                </li>
 
 
 			</ul>
@@ -116,13 +120,23 @@
 
 </div>
 
-<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery-1.3.2.min.js"></script>
-<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery-ui-1.7.2.custom.min.js"></script>
+
+
+
+<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery-1.4.2.min.js"></script>
+<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery-ui-1.8.1.custom.min.js"></script>
+
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/admin/js/jquery.Jcrop.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/admin/js/jquery.jgrowl.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/admin/js/ajax.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/admin/js/admin.js"></script>
-<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/slimbox2.js"></script>
+<!--script type="text/javascript" src="<?php echo base_url(); ?>assets/js/slimbox2.js"></script-->
+
+
+<script type="text/javascript" src="<?php echo base_url(); ?>assets/fancybox/jquery.mousewheel-3.0.2.pack.js"></script>
+<script type="text/javascript" src="<?php echo base_url(); ?>assets/fancybox/jquery.fancybox-1.3.1.js"></script>
+
+
 
 <script type="text/javascript">
 
@@ -161,6 +175,8 @@
 			$this->load->view($js);
 		}
 ?>
+
+<div id="feedback" class="rounded"><a href="http://starfish/quicksnaps/feedback" id="feedback_link">Feedback</a></div>
 
 </body>
 

@@ -29,8 +29,13 @@
 
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery-1.3.2.min.js"></script>
 
+<?php if(IMAGE_VIEWER == 'slimbox2'): ?>
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/slimbox2.js"></script>
 <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/slimbox2.css" media="screen" />
+<?php else: ?>
+<script type="text/javascript" src="<?php echo base_url(); ?>assets/fancybox/jquery.mousewheel-3.0.2.pack.js"></script>
+<script type="text/javascript" src="<?php echo base_url(); ?>assets/fancybox/jquery.fancybox-1.3.1.js"></script>
+<?php endif; ?>
 
 <?php if(!empty($js)): ?>
 	<script type="text/javascript" src="<?php echo base_url();?>themes/<?php echo $theme; ?>/effects.js"></script>

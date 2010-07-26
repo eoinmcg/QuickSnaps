@@ -106,9 +106,19 @@ $(document).ready(function() {
 //delete album
     $('tr.album_row a.delete_ajax').click(function() {
 
-    if(!confirm('Delete "'+jQuery(this).attr('title')+'" ?')) {
-        return false;
-    }
+	var txt = 'Delete "'+jQuery(this).attr('title')+'" ?';
+	
+	var action = fancyConfirm(txt);
+	return false;
+	
+	if(!action) {
+		return false;
+	}
+
+
+//    if(!confirm('Delete "'+jQuery(this).attr('title')+'" ?')) {
+//        return false;
+//    }
 
     var row = $(this).parents('tr:first');
 
@@ -161,5 +171,24 @@ $(document).ready(function() {
 });
 
 
+
+function fancyConfirm(txt) {
+
+    jQuery.fancybox({
+        modal : true,
+        content : "<div style=\"margin:1px;width:240px;\">Delete?<div style=\"text-align:right;margin-top:10px;\"><input id=\"fancyConfirm_cancel\" style=\"margin:3px;padding:0px;\" type=\"button\" value=\"Cancel\"><input id=\"fancyConfirm_ok\" style=\"margin:3px;padding:0px;\" type=\"button\" value=\"Ok\"></div></div>",
+        onComplete : function() {
+            jQuery("#fancyConfirm_cancel").click(function() {
+                jQuery.fancybox.close();
+                alert('FALSE');
+            })
+            jQuery("#fancyConfirm_ok").click(function() {
+                jQuery.fancybox.close();
+                alert('TRUE');
+            })
+        }
+	});
+
+}
 
 

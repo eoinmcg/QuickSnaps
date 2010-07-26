@@ -1,9 +1,27 @@
-<?php
+<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
+define('IMAGE_VIEWER', 'fancybox');
+
+/**
+ * QuickSnaps Controller
+ *
+ * @package		QuickSnaps
+ * @subpackage	Controllers
+ * @author		Eoin McGrath
+ * @link		http://www.starfishwebconsulting.co.uk/quicksnaps
+ */
 class QS_Controller extends MY_Controller
 {
 
 
+	/**
+	 * QuickSnaps Constructor Class
+	 *
+	 * If not installed redirects to installer
+	 * Loads DB, Session, settings
+	 * Checks if logged in
+	 *
+	 */
 	function QS_Controller()
 	{
 		parent::MY_Controller();
@@ -16,12 +34,26 @@ class QS_Controller extends MY_Controller
         $this->_load_settings();
         $this->_check_login();
 
-		$this->output->enable_profiler($this->config->item('profiler_admin'));
+		if ( $this->uri->segment(1, 0) == 'admin' )
+		{
+			$this->output->enable_profiler($this->config->item('profiler_admin'));
+		}
+		else
+		{
+			$this->output->enable_profiler($this->config->item('profiler'));
+		}
 
 	}
 
 
-
+	/**
+	 * Checks if database config file has been created
+	 *
+	 * If not redirects to installer
+	 *
+	 * @access	private
+	 * @return	void
+	 */
 	function _check_installed()
 	{
 
@@ -33,6 +65,12 @@ class QS_Controller extends MY_Controller
 	}
 
 
+	/**
+	 * Loads Gallery settings from the db, set imagelib and max upload size
+	 *
+	 * @access	private
+	 * @return	void
+	 */
     function _load_settings()
     {
 
@@ -51,7 +89,6 @@ class QS_Controller extends MY_Controller
 		if($query->num_rows())
 		{
 			$row = $query->row();
-
 
 			define("GALLERY_NAME", $row->name);
 			define("GALLERY_SUMMARY", $row->summary);
@@ -84,27 +121,32 @@ class QS_Controller extends MY_Controller
     }
 
 
+	/**
+	 * Loads Gallery settings from the db, set imagelib and max upload size
+	 *
+	 * @access	private
+	 * @return	void
+	 */
     function _check_login()
     {
 
 
+		// flash uploadify; not logged in auth via db key
 		if(($this->uri->segment(1) == 'admin') && ($this->uri->segment(3) == 'upload_batch'))
 		{
 			return;
 		}
-        elseif($this->uri->segment(1, 0) != 'admin')
+		// not admin area, no need
+        elseif($this->uri->segment(1) != 'admin')
         {
-		    $this->output->enable_profiler($this->config->item('profiler_site'));
             return;
         }
 
 
-		$this->output->enable_profiler($this->config->item('profiler_admin'));
-        $this->load->library('session');
-
-        if($this->session->userdata('username') === FALSE && $this->uri->segment(2, 0) != 'login')
+		// admin area but no admin session; send back to login
+        if($this->session->userdata('username') === FALSE && $this->uri->segment(1) == 'admin')
         {
-            redirect('admin/login', 'refresh');
+            redirect('/login', 'refresh');
             exit;
          }
 
@@ -113,6 +155,12 @@ class QS_Controller extends MY_Controller
     }
 
 
+	/**
+	 * Checks if request is AJAX
+	 *
+	 * @access	private
+	 * @return	bool
+	 */
     function _is_ajax()
     {
         return (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && ($_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest'));

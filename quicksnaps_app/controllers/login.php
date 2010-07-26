@@ -1,15 +1,32 @@
-<?php
+<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+
+/**
+ * Login Controller
+ *
+ * @package		CodeIgniter
+ * @subpackage	FrontEnd
+ * @author		Eoin McGrath
+ * @link		http://www.starfishwebconsulting.co.uk/quicksnaps
+ */
 
 class Login extends QS_Controller
 {
 
+	/**
+	 * Login Constructor Class
+	 *
+	 * Loads model and necessary helpers
+	 * If logged in directs to the dashboard
+	 *
+	 */
 	function Login()
 	{
 		parent::QS_Controller();
 
+		$this->load->model('Login_model');
 		$this->load->helper(array('security', 'form'));
-		$this->load->library('session');
 
+		// already logged in, redirect
         if($this->session->userdata('username'))
         {
             redirect('/admin/albums/', 'refresh');
@@ -20,18 +37,25 @@ class Login extends QS_Controller
 	}
 
 
+	/**
+	 * Display form and check login in posted
+	 *
+	 * @access public
+	 *
+	 */
 	function index() {
 
+		// prep login details
 		$u = xss_clean($this->input->post('uname'));
 		$p = xss_clean($this->input->post('pword'));
 
-		$this->load->model('Login_model');
-
+		// we'll use this to send errors to the view
 		$data['msg'] = '';
 
-
+		// login attempt
 		if($this->input->post('login'))
 		{
+
             $logon = $this->Login_model->do_login($u, $p);
 
 			if($logon)

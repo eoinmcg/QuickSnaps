@@ -17,6 +17,8 @@
 	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/reset.css" type="text/css" media="screen" />
 	<link rel="stylesheet" href="<?php echo base_url(); ?>themes/<?php echo $theme; ?>/style.css" type="text/css" media="screen" />
 
+	<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/slimbox2.css" media="screen" />
+	<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/fancybox/jquery.fancybox-1.3.1.css" media="screen" />
 
 	<?php if(!($favicon)): ?>
 		<link rel="shortcut icon" href="<?php echo base_url(); ?>favicon.ico" type="image/x-icon" />

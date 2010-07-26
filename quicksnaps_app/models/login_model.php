@@ -1,16 +1,35 @@
-<?php
+<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+
+/**
+* Login Model
+*
+* @package		QuickSnaps
+* @author		Eoin McGrath
+* @link			http://www.starfishwebconsulting.co.uk/quicksnaps
+*/
 
 class Login_model extends Model {
 
 
 
+	/**
+	 * Constructor
+	 *
+	 */
 	function Login_model()
 	{
 		parent::Model();
 	}
 
 
-
+	/**
+	 * Process login
+	 *
+	 * @access	public
+	 * @param	string
+	 * @param	string
+	 * @return	bool
+	 */
 	function do_login($u, $p)
 	{
 

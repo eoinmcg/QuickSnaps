@@ -25,11 +25,24 @@ $(document).ready(function() {
 	$('.theme').equalHeights();
 
 
-	$('a.delete').click(
-		function() {
-			var answer = confirm('Delete "'+jQuery(this).attr('title')+'" ?');
-			return answer;
+//	$('a.delete').click(
+//		function() {
+//			var answer = confirm('Delete "'+jQuery(this).attr('title')+'" ?');
+//			return answer;
+//	});
+
+
+	$('a.lightbox').fancybox({
+		'titlePosition' : 'inside',
+		'transitionIn'	:	'elastic',
+		'transitionOut'	:	'elastic',
+		'speedIn'		:	600, 
+		'speedOut'		:	200
 	});
+
+
+
+	
 
     $('form input, form textarea, form select, form checkbox').focus(function () {
         $(this).parents('div:first').addClass('active');
@@ -65,16 +78,17 @@ $(document).ready(function() {
 	});
 
 
-	$('a#quick_tour').click(function(){
-		$('#tour_body').toggle();
-        return false;
+
+	$("#feedback_link").fancybox({
+		'width'				: '40%',
+		'height'			: '85%',
+		'autoScale'			: false,
+		'transitionIn'		: 'elastic',
+		'transitionOut'		: 'elastic',
+		'type'				: 'iframe'
 	});
 
 
-
-//	$('a#quick_tour').click(function()){
-//		$('#tour_body').toggle();
-//	});
 
 //	fadeout image libray path if gd/ gd2 selected
 //
