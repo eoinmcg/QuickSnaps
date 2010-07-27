@@ -83,8 +83,8 @@ $(document).ready(function() {
 		'width'				: '40%',
 		'height'			: '85%',
 		'autoScale'			: false,
-		'transitionIn'		: 'elastic',
-		'transitionOut'		: 'elastic',
+		'transitionIn'		: 'none',
+		'transitionOut'		: 'none',
 		'type'				: 'iframe'
 	});
 
