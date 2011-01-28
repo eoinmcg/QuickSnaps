@@ -104,7 +104,7 @@ class Installer extends Install_Controller
 			$db_config = array(
 				'hostname' => $this->input->post('hostname'),
 				'database' => $this->input->post('database'),
-				'username' => $this->input->post('password'),
+				'username' => $this->input->post('username'),
 				'password' => $this->input->post('password'),
 				'dbdriver' => $this->input->post('dbdriver'),
 				'dbprefix' => $this->input->post('dbprefix')
