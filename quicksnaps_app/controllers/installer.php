@@ -55,11 +55,11 @@ class Installer extends Install_Controller
 
 		$data['config_writable'] = ($config)
 			? '<span class="true">WRITABLE</span>'
-			: '<span class="true">IS NOT WRITABLE</span>';
+			: '<span class="false">IS NOT WRITABLE</span>';
 
         $data['uploads_writable'] = ($uploads)
             ? '<span class="true">WRITABLE</span>'
-            : '<span class="true">IS NOT WRITABLE</span>';
+            : '<span class="false">IS NOT WRITABLE</span>';
 
         $data['image_libs'] = installed_image_libs();
 
