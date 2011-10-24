@@ -518,6 +518,7 @@ class Dashboard_model extends Model {
 			$dim = getimagesize($path);
 			$this->load->library('image_lib');
 
+			$file_info = pathinfo($path);	
 
 	#			MAIN PIC
 				if($dim[0] > GALLERY_MID_W)
@@ -526,8 +527,10 @@ class Dashboard_model extends Model {
 				}
 				else
 				{
-                    $mid = str_replace('.', '_mid.', $path);
-                    $mid = str_replace('_mid./', './', $mid);
+					$mid = $file_info['dirname'] . 
+								'/' . $file_info['filename'] .
+								'_mid' . '.' . $file_info['extension'];
+								
                     copy($path, $mid);
 				}
 
@@ -540,8 +543,10 @@ class Dashboard_model extends Model {
 				}
 				else
 				{
-                    $thumb = str_replace('.', '_thumb.', $path);
-                    $thumb = str_replace('_thumb./', './', $thumb);
+					$thumb = $file_info['dirname'] . 
+								'/' . $file_info['filename'] .
+								'_thumb' . '.' . $file_info['extension'];
+
 					copy($path, $thumb);
 				}
 
