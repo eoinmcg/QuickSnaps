@@ -11,7 +11,7 @@
 */
 
 
-class Gallery_model extends Model {
+class Gallery_model extends CI_Model {
 
 	/**
 	* PHP4 Style contructor
@@ -20,9 +20,9 @@ class Gallery_model extends Model {
 	* @access public
 	* @return void
 	*/
-    function Gallery_model()
+    function __construct()
     {
-        parent::Model();
+        parent::__construct();
     }
 
 

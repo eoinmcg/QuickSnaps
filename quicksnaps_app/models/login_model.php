@@ -8,7 +8,7 @@
 * @link			http://www.starfishwebconsulting.co.uk/quicksnaps
 */
 
-class Login_model extends Model {
+class Login_model extends CI_Model {
 
 
 
@@ -16,9 +16,9 @@ class Login_model extends Model {
 	 * Constructor
 	 *
 	 */
-	function Login_model()
+	function __construct()
 	{
-		parent::Model();
+		parent::__construct();
 	}
 
 

@@ -21,9 +21,9 @@ class Gallery extends QS_Controller {
 	 * NOTE: Parent Controller checks if installed
 	 *
 	 */
-	function Gallery()
+	function __construct()
 	{
-		parent::QS_Controller();
+		parent::__construct();
 
 		$this->load->model('Gallery_model');
 		$this->load->helper(array('smiley', 'text', 'form'));

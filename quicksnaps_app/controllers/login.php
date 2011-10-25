@@ -19,9 +19,9 @@ class Login extends QS_Controller
 	 * If logged in directs to the dashboard
 	 *
 	 */
-	function Login()
+	function __construct()
 	{
-		parent::QS_Controller();
+		parent::__construct();
 
 		$this->load->model('Login_model');
 		$this->load->helper(array('security', 'form'));

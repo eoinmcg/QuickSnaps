@@ -6,9 +6,9 @@ class Themes extends QS_Controller
 {
 
 
-	function Themes()
+	function __construct()
 	{
-		parent::QS_Controller();
+		parent::__construct();
 
 		$this->load->helper(array('file', 'directory'));
 

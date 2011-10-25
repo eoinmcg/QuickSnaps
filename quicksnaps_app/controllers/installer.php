@@ -22,9 +22,9 @@ class Installer extends Install_Controller
 	 * @access public
 	 * @return void
 	 */ 
-	function Installer()
+	function __construct()
 	{
-		parent::Install_Controller();
+		parent::__construct();
 
         $this->load->helper('image');
 

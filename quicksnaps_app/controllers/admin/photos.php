@@ -4,9 +4,9 @@
 class Photos extends QS_Controller
 {
 
-	function Photos()
+	function __construct()
 	{
-		parent::QS_Controller();
+		parent::__construct();
 
 		$this->load->helper(array('form', 'text'));
 

@@ -8,7 +8,7 @@
 * @author		Eoin McGrath
 * @link			http://www.starfishwebconsulting.co.uk/quicksnaps
 */
-class Installer_Model extends Model
+class Installer_Model extends CI_Model
 {
 
 	/**
@@ -17,9 +17,9 @@ class Installer_Model extends Model
 	 * @access public
 	 * @return void
 	 */ 
-	function Installer_Model()
+	function __construct()
 	{
-		parent::Model();
+		parent::__construct();
 
 	}
 

@@ -9,7 +9,7 @@
 * @link			http://www.starfishwebconsulting.co.uk/quicksnaps
 */
 
-class Dashboard_model extends Model {
+class Dashboard_model extends CI_Model {
 
 
 	/**
@@ -21,9 +21,9 @@ class Dashboard_model extends Model {
 	* @access public
 	* @return void
 	*/
-	function Dashboard_model()
+	function __construct()
 	{
-		parent::Model();
+		parent::__construct();
 
 
 	}

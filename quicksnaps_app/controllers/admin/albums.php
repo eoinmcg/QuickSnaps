@@ -3,9 +3,9 @@
 class Albums extends QS_Controller
 {
 
-    function Albums()
+    function __construct()
 	{
-		parent::QS_Controller();
+		parent::__construct();
 
 		$this->load->model('Dashboard_model');
 		$this->load->model('Gallery_model');

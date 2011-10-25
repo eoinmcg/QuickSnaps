@@ -1,2 +1,5 @@
 quicksnaps_app/config/database.php
+quicksnaps_app/cache/*
+quicksnaps_app/logs/*
+
 uploads/*

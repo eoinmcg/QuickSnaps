@@ -5,9 +5,9 @@ class Settings extends QS_Controller
 {
 
 
-	function Settings()
+	function __construct()
 	{
-		parent::QS_Controller();
+		parent::__construct();
 
 		$this->load->helper('form');
 
